@@ -12,7 +12,7 @@ Harness engineering focuses on making that machinery effective.
 
 As organizations begin to operate more than one harness, a different problem appears. There may be multiple harness products, models, hosts, execution environments, sessions, workflows, permission systems, schedules, budgets, and human approval paths. The challenge is no longer only how to build an effective agent. It is how to operate the resulting agent system coherently.
 
-> **Harness engineering makes an agent effective. Harness Operations makes agent systems operable.**
+> **Harness engineering makes agents effective. Harness Operations enables them to work at scale.**
 
 ## Definition
 
@@ -24,13 +24,13 @@ The reference model begins when operating the agents becomes a distinct problem 
 
 ## Why a harness-centric model?
 
-Broader **AgentOps** and **agent operations** practices already address the production operation of AI agents, and current usage of those terms ranges from observability and testing to governance, security, cost control, lifecycle management, and fleet operations.
+**AgentOps** and **agent operations** are emerging umbrella terms for practices used to deploy, observe, evaluate, secure, and manage AI agents in production. Current usage ranges from observability and testing to governance, security, cost control, lifecycle management, and fleet operations. Their scope and terminology are not yet standardized, and the v0.1 prior-art review did not identify a broadly adopted common AgentOps specification or reference model.
 
-Harness Operations does not claim to replace or exclusively define that broader space. It deliberately chooses the **Harness** as its primary operational unit because the Harness is where an agent's session lifecycle, context, tools, permissions, execution, and other native runtime semantics are concretely mediated.
+Harness Operations does not attempt to redefine that broader practice. It deliberately chooses the **Harness** as its primary operational unit because the Harness is where an agent's session lifecycle, context, tools, permissions, execution, persistence, and other native runtime semantics are concretely mediated.
 
 That choice matters in heterogeneous environments. Two agents may appear to perform similar work while the Harnesses operating them expose materially different session lifecycles, capability models, permission mechanisms, execution environments, or persistence semantics. A harness-centric model makes those differences explicit instead of treating every agent as an interchangeable process.
 
-Harness Operations can therefore be understood as complementary to, or a specialization within, broader agent-operations practice: it focuses on how heterogeneous Harnesses and their executions are operated coherently without erasing their native meaning.
+Harness Operations is therefore **adjacent to and overlapping with** broader AgentOps / agent-operations practice while addressing a more specific systems problem: how heterogeneous Harnesses and their executions can be operated coherently without erasing their native meaning.
 
 ## When the problem appears
 
@@ -122,11 +122,11 @@ Harness Operations concerns how Harnesses and their executions are operated as a
 
 The disciplines are complementary.
 
-### Not a claim to replace AgentOps
+### Not a replacement definition for AgentOps
 
-AgentOps and agent operations are broader, already-used terms for operating AI agents in production. Harness Operations is a narrower, harness-centric reference model intended to add precision around heterogeneous runtime semantics and cross-harness operation.
+AgentOps and agent operations are emerging, non-uniform terms for operating AI agents in production. Harness Operations overlaps with that practice but does not treat it as a parent specification or standardized reference model.
 
-The project should reuse useful AgentOps practices rather than rename them, just as it should reuse established DevOps, SRE, platform-engineering, and governance practices.
+The Harness Operations scope is more specific: heterogeneous Harnesses, their native runtime semantics, and the operational state needed to run them coherently at scale.
 
 ### Not an agent framework
 
