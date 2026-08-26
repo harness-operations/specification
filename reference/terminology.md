@@ -10,6 +10,8 @@ This document establishes the working scope, boundaries, and shared vocabulary u
 
 Harness Operations is an operational discipline and reference model. It does not require a central control plane, a particular deployment architecture, or a new wire protocol.
 
+Harness Operations is deliberately **harness-centric**. It uses the Harness as an operational unit because the Harness is where agent-session lifecycle, context, tools, permissions, execution, and other native semantics are concretely mediated. This scope can coexist with broader agent-centric operational disciplines.
+
 ## Boundary with adjacent disciplines
 
 ### Harness engineering
@@ -17,6 +19,14 @@ Harness Operations is an operational discipline and reference model. It does not
 Harness engineering builds and improves the machinery that makes an individual agent effective.
 
 Harness Operations concerns the ongoing operation of harnesses and their executions as a system.
+
+### AgentOps and agent operations
+
+`AgentOps` and `agent operations` are already used broadly for practices and products concerned with deploying, observing, evaluating, securing, governing, and managing AI agents in production. Usage is not uniform: some definitions center observability and testing, while others include lifecycle, governance, cost, security, and fleet management.
+
+Harness Operations does not claim to replace or exclusively define that broader space. It is a harness-centric reference model focused on the operational problems that appear when one or more Harnesses—with potentially different session, capability, permission, context, and execution semantics—must be operated coherently.
+
+Harness Operations may therefore be understood as complementary to, or a specialization within, broader agent-operations practice.
 
 ### Agent frameworks and orchestration
 
