@@ -22,6 +22,16 @@ Harness Operations is an operational discipline and reference model. It does not
 
 The reference model begins when operating the agents becomes a distinct problem from building the agents.
 
+## Why a harness-centric model?
+
+Broader **AgentOps** and **agent operations** practices already address the production operation of AI agents, and current usage of those terms ranges from observability and testing to governance, security, cost control, lifecycle management, and fleet operations.
+
+Harness Operations does not claim to replace or exclusively define that broader space. It deliberately chooses the **Harness** as its primary operational unit because the Harness is where an agent's session lifecycle, context, tools, permissions, execution, and other native runtime semantics are concretely mediated.
+
+That choice matters in heterogeneous environments. Two agents may appear to perform similar work while the Harnesses operating them expose materially different session lifecycles, capability models, permission mechanisms, execution environments, or persistence semantics. A harness-centric model makes those differences explicit instead of treating every agent as an interchangeable process.
+
+Harness Operations can therefore be understood as complementary to, or a specialization within, broader agent-operations practice: it focuses on how heterogeneous Harnesses and their executions are operated coherently without erasing their native meaning.
+
 ## When the problem appears
 
 A single harness running one agent session can often be operated manually. The user already knows where the session runs, what it can access, why it exists, and whether it needs attention.
@@ -111,6 +121,12 @@ Harness engineering concerns the design and improvement of the Harness itself: i
 Harness Operations concerns how Harnesses and their executions are operated as an ongoing system.
 
 The disciplines are complementary.
+
+### Not a claim to replace AgentOps
+
+AgentOps and agent operations are broader, already-used terms for operating AI agents in production. Harness Operations is a narrower, harness-centric reference model intended to add precision around heterogeneous runtime semantics and cross-harness operation.
+
+The project should reuse useful AgentOps practices rather than rename them, just as it should reuse established DevOps, SRE, platform-engineering, and governance practices.
 
 ### Not an agent framework
 
