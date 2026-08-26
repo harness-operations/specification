@@ -4,11 +4,11 @@ This repository is the canonical home of the emerging **Harness Operations Refer
 
 **Status:** Reference Model 0.1 content-complete draft; publication pending.
 
-> **Harness engineering makes an agent effective. Harness Operations makes agent systems operable.**
+> **Harness engineering makes agents effective. Harness Operations enables them to work at scale.**
 
 Harness Operations is a vendor-neutral, implementation-neutral, **harness-centric** reference model for operating one or more agent harnesses as a coherent system across their lifecycles, environments, work, and authorities.
 
-It is complementary to the broader AgentOps / agent-operations space. Its narrower focus is the operational meaning carried by heterogeneous Harnesses: session lifecycle, context, capabilities, permissions, execution, governance, intervention, and evidence without forcing unlike Harnesses into false equivalence.
+`AgentOps` and `agent operations` are emerging umbrella terms for practices used to deploy, observe, evaluate, secure, and manage AI agents in production. Their scope and terminology are not yet standardized, and the v0.1 prior-art review did not identify a broadly adopted common AgentOps specification or reference model. Harness Operations is adjacent to and overlapping with that practice, but addresses a more specific systems problem: operating heterogeneous Harnesses and their executions coherently without erasing their native session, context, capability, permission, execution, governance, and persistence semantics.
 
 The project intentionally starts with a reference model rather than a new wire protocol. Existing standards, established operational disciplines, and native Harness capabilities should be composed where they already solve the problem.
 
