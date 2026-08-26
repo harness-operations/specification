@@ -209,7 +209,7 @@ An **Exception** is an explicit, scoped deviation from an otherwise applicable P
 
 An operationally useful Exception records who authorized it, what it applies to, why it exists, and—where practical—when it expires.
 
-Detailed governance semantics are defined in the Governance document.
+Detailed governance semantics are defined in the [Governance](governance.md) document.
 
 ## Evidence concepts
 
@@ -402,6 +402,6 @@ Those may become subjects of later proposals only when implementation experience
 ## Related documents
 
 - [Scope and Terminology](terminology.md)
-- Principles — forthcoming
-- Governance — forthcoming
-- Standards Landscape — forthcoming
+- [Principles](principles.md)
+- [Governance](governance.md)
+- [Standards Landscape](landscape.md)
