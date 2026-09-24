@@ -198,6 +198,65 @@ It does not by itself define the complete cross-harness governance and evidence 
 
 Harness Operations implementations integrating AX should preserve AX's native lifecycle and resource semantics rather than flatten them into a generic executor API.
 
+## Jev and System One decision models
+
+### Current scope
+
+**Jev** is TypeSafe AI's first **System One** model: a model designed to turn unstructured or structured state into typed probabilistic decisions that software can consume directly.
+
+The current TypeSafe API exposes three decision primitives:
+
+- `Noul` for yes/no judgments expressed as probabilities;
+- `Choice` for selecting among a bounded set of options with a probability distribution;
+- `Score` for assigning a position on an ordered scale with associated probabilities/confidence.
+
+Unlike a chat-oriented LLM interface, Jev does not return arbitrary free-form text. The caller specifies the question type and allowed answer structure, which constrains output shape and makes the result directly consumable by code.
+
+Authoritative background:
+
+- [TypeSafe AI](https://typesafe.ai/)
+- [Introducing System One Models & Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev)
+- [TypeSafe API](https://api.typesafe.ai/docs)
+
+### Maturity
+
+Jev is currently **early access**, and the public TypeSafe API is version **0.2.0** as of this landscape update.
+
+Harness Operations should therefore treat Jev and the broader System One framing as emerging decision-model prior art rather than a stable cross-vendor decision protocol.
+
+### Relationship to Harness Operations
+
+Jev is relevant to Harness Operations because many operational actions depend on model-informed judgments: routing work, escalating to humans, selecting an execution path, evaluating risk, or deciding whether a proposed action should proceed.
+
+A Jev result can provide a typed, probabilistic input to those decisions, but the result is **not itself enforcement**.
+
+For example:
+
+- a `Choice` can inform routing among Harnesses or execution paths;
+- a `Score` can contribute to a risk, urgency, quality, or review threshold;
+- a `Noul` can contribute to a gate such as whether human review is required;
+- confidence or probability can be incorporated into Policy, Limits, or escalation logic.
+
+The surrounding Harness, Control Plane, policy engine, or application remains responsible for interpreting the result and binding it to an operational consequence.
+
+This distinction is important:
+
+```text
+Jev / decision model
+  What does the model judge, with what probability?
+
+Policy / governance
+  What should happen given that judgment?
+  Who is authorized to define or override that rule?
+
+Enforcement
+  What mechanism actually causes or prevents the action?
+```
+
+Typed model output can reduce output-shape ambiguity and make decision inputs easier to validate, log, and audit. It does not by itself guarantee that the judgment is correct, that a downstream agent will obey it, or that an operational boundary is technically enforced.
+
+Harness Operations should preserve that separation rather than treating structured model output as equivalent to Authority, Approval, Policy, or enforcement.
+
 ## OpenTelemetry
 
 ### Current scope
@@ -250,6 +309,7 @@ A faithful native capability is preferable to a lossy common abstraction when no
 | Editor/client ↔ coding agent | ACP | Preserve ACP Session, permission, and update semantics. |
 | Independent agent system ↔ agent system | A2A | Preserve AgentCard, Task, Message, Artifact, and protocol lifecycle semantics. |
 | Agent workload execution / orchestration runtime | Agent Executor (AX) | Emerging open-source runtime prior art; preserve AX Task/Workspace/Gateway/Model semantics without turning its v1alpha1 API into universal Harness Operations requirements. |
+| Typed probabilistic decisions for automation | Jev / System One models | Emerging decision-model prior art; typed judgments can inform routing, policy, approval, and escalation, but surrounding systems retain governance and enforcement responsibility. |
 | Telemetry representation | OpenTelemetry | Prefer OTel signals and GenAI conventions; do not create a competing generic telemetry protocol. |
 | Telemetry/data-collection agent fleet management | OpAMP | Adjacent operational prior art; reuse lessons, not names by assumption. |
 | Harness-specific lifecycle/capabilities | Native Harness interfaces | Preserve native semantics and adapt rather than flatten. |
@@ -283,6 +343,12 @@ ACP, Harness-native permission systems, MCP authorization, environment policy, a
 
 A low-level permission request becomes an Approval only when it carries governance meaning: attributable Authority, a defined decision scope, and operational effect.
 
+### Model decisions and enforcement
+
+Jev and other structured decision systems can provide validated decision inputs, but a typed model answer is not itself an Approval, Authority grant, Policy rule, or enforcement boundary.
+
+An implementation should record enough provenance to explain which decision input influenced an operational action, while keeping the model judgment distinct from the rule that interpreted it and the mechanism that enforced it.
+
 ## Criteria for future interoperability work
 
 A future Harness Operations interoperability proposal should demonstrate all of the following:
@@ -300,6 +366,6 @@ Until those conditions exist, adapters and reference-model mappings are preferab
 
 This landscape is time-sensitive.
 
-MCP, ACP, A2A, Agent Executor, OpenTelemetry GenAI conventions, AgentOps practice, and adjacent standards will continue to evolve. Harness Operations should become smaller when another standard or established discipline successfully absorbs a concern rather than defending conceptual territory for its own sake.
+MCP, ACP, A2A, Agent Executor, Jev/System One decision models, OpenTelemetry GenAI conventions, AgentOps practice, and adjacent standards will continue to evolve. Harness Operations should become smaller when another standard or established discipline successfully absorbs a concern rather than defending conceptual territory for its own sake.
 
 That is a feature of the project, not a failure.
