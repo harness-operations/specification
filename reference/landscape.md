@@ -155,6 +155,49 @@ Possible mappings include:
 
 A2A's normative Task, Message, and Artifact semantics remain authoritative when A2A is used. Harness Operations should add operational relationships or provenance rather than redefine them.
 
+## Agent Executor (AX)
+
+### Current scope
+
+**Agent Executor (AX)** is Google's open-source agentic orchestration runtime for executing agent workloads declaratively at scale.
+
+AX currently exposes `ax.io/v1alpha1` resources centered on four primitives:
+
+- `Task` for sandboxed execution with CPU and memory limits, lifecycle state, and suspend/resume;
+- `Workspace` for preparing repositories, MCP servers, skills, and other task dependencies;
+- `Gateway` for network policy, egress restrictions, and credential mediation;
+- `Model` for model configuration and associated credentials.
+
+AX runs on Agent Substrate and is designed around long-lived, stateful, bursty agent workloads rather than assuming ordinary stateless services or run-to-completion batch jobs.
+
+Authoritative background:
+
+- [Agent Executor](https://agentexecutor.io/)
+- [google/ax](https://github.com/google/ax)
+- [Google Cloud: Introducing Agent Executor](https://cloud.google.com/blog/products/ai-machine-learning/agent-executor-googles-distributed-agent-runtime)
+
+### Maturity
+
+AX is important emerging runtime prior art, but its current API is explicitly **v1alpha1**. The project warns that its core concepts, protocols, and specifications are still being refined and may introduce major breaking changes before a stable release.
+
+Harness Operations should therefore treat AX as a concrete implementation and design reference, not as a stable cross-vendor standard that other Harnesses must implement.
+
+### Relationship to Harness Operations
+
+AX operates primarily at the execution and orchestration layer. Its concepts can map naturally into the Harness Operations reference model without becoming universal Harness Operations objects:
+
+- an AX `Task` may serve as a Run when its lifecycle matches the operational objective, or may represent one execution inside a broader Run;
+- AX task sandboxing and resource controls are concrete Execution Environment and Limit mechanisms;
+- a `Workspace` can contribute resolved execution context and Capabilities;
+- a `Gateway` can enforce network and credential policy at an execution boundary;
+- a `Model` is resolved execution configuration rather than a replacement for Harness identity.
+
+AX is especially useful prior art for suspend/resume, isolation, placement, resource controls, network fencing, and declarative fleet operation.
+
+It does not by itself define the complete cross-harness governance and evidence model described by Harness Operations. Authority, Approval, Delegation, Ownership, cross-system audit evidence, and semantic interoperability across unrelated Harnesses remain separate concerns.
+
+Harness Operations implementations integrating AX should preserve AX's native lifecycle and resource semantics rather than flatten them into a generic executor API.
+
 ## OpenTelemetry
 
 ### Current scope
@@ -206,6 +249,7 @@ A faithful native capability is preferable to a lossy common abstraction when no
 | AI application ↔ tools/context/services | MCP | Compose MCP primitives and extensions; do not redefine tool/resource/task semantics. |
 | Editor/client ↔ coding agent | ACP | Preserve ACP Session, permission, and update semantics. |
 | Independent agent system ↔ agent system | A2A | Preserve AgentCard, Task, Message, Artifact, and protocol lifecycle semantics. |
+| Agent workload execution / orchestration runtime | Agent Executor (AX) | Emerging open-source runtime prior art; preserve AX Task/Workspace/Gateway/Model semantics without turning its v1alpha1 API into universal Harness Operations requirements. |
 | Telemetry representation | OpenTelemetry | Prefer OTel signals and GenAI conventions; do not create a competing generic telemetry protocol. |
 | Telemetry/data-collection agent fleet management | OpAMP | Adjacent operational prior art; reuse lessons, not names by assumption. |
 | Harness-specific lifecycle/capabilities | Native Harness interfaces | Preserve native semantics and adapt rather than flatten. |
@@ -215,9 +259,11 @@ A faithful native capability is preferable to a lossy common abstraction when no
 
 ### Tasks and Runs
 
-MCP Tasks and A2A Tasks overlap with Harness Operations Run.
+MCP Tasks, A2A Tasks, and AX Tasks overlap with Harness Operations Run, but they do so at different boundaries.
 
 **Do not create an extra Run merely because the reference model contains the word.** Use the native Task when its scope is sufficient. Introduce a broader Run only when execution genuinely spans multiple native tasks, sessions, Harnesses, Approvals, or environments.
+
+An AX Task is a concrete runtime object rather than a normative cross-vendor protocol object. It should remain authoritative for AX lifecycle and execution semantics when AX is the runtime.
 
 ### Sessions
 
@@ -254,6 +300,6 @@ Until those conditions exist, adapters and reference-model mappings are preferab
 
 This landscape is time-sensitive.
 
-MCP, ACP, A2A, OpenTelemetry GenAI conventions, AgentOps practice, and adjacent standards will continue to evolve. Harness Operations should become smaller when another standard or established discipline successfully absorbs a concern rather than defending conceptual territory for its own sake.
+MCP, ACP, A2A, Agent Executor, OpenTelemetry GenAI conventions, AgentOps practice, and adjacent standards will continue to evolve. Harness Operations should become smaller when another standard or established discipline successfully absorbs a concern rather than defending conceptual territory for its own sake.
 
 That is a feature of the project, not a failure.
