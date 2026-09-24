@@ -1,6 +1,8 @@
 # Standards Landscape and Interoperability Boundaries
 
-**Status:** Draft for Harness Operations Reference Model 0.1
+**Status:** Harness Operations Reference Model 0.2
+
+**External-claim verification:** September 24, 2026
 
 ## Purpose
 
@@ -13,6 +15,18 @@ This document asks a narrower question:
 > **Which existing standards and adjacent disciplines already define relevant boundaries, and what harness-specific operational problem remains?**
 
 The landscape is intentionally selective. It is not a catalog of agent frameworks, products, or every protocol related to AI systems.
+
+### Implementation prior-art inclusion rule
+
+A concrete implementation or product belongs in this landscape only when its public interface or design materially clarifies a cross-harness operational boundary that the reference model needs to reason about.
+
+Inclusion:
+- does **not** imply endorsement, recommendation, or required compatibility;
+- does **not** promote implementation-specific objects into universal Harness Operations concepts;
+- should prefer public, inspectable interfaces and documentation over marketing claims;
+- should be revisited when the implementation changes materially or stops adding distinct conceptual value.
+
+Open standards remain preferable reference points when they faithfully define the same boundary.
 
 ## Guiding rule: compose before inventing
 
@@ -86,7 +100,7 @@ Harness Operations is not an attempt to own the phrase “agent operations.” I
 
 The Model Context Protocol is an open standard connecting AI applications to external systems that expose tools, resources, prompts, and related capabilities.
 
-The current MCP specification revision, **2026-07-28**, uses a stateless request/response core with a formal extension mechanism. Long-running work is available through the **Tasks extension**.
+The current MCP specification revision, **2026-07-28**, uses a stateless request/response core with a formal extension mechanism. Long-running work is available through the **Tasks extension**, which is currently marked **Draft**.
 
 Authoritative background:
 
@@ -111,7 +125,7 @@ MCP is evolving quickly. These boundaries are time-sensitive and should shrink i
 
 The Agent Client Protocol standardizes communication between code editors or interactive clients and coding agents. ACP includes session lifecycle, prompts and updates, tool-call presentation, permission requests, configuration, and related coding-agent interactions.
 
-As of Reference Model 0.1 development, **ACP v1 is stable** while protocol v2 remains explicitly unstable/draft.
+As of the Reference Model 0.2 verification on September 24, 2026, **ACP v1 remains stable** while protocol v2 remains explicitly unstable/draft. The current ACP changelog is at **1.9.1**.
 
 Authoritative background:
 
@@ -135,7 +149,7 @@ Harness Operations should preserve ACP Session semantics rather than force a com
 
 A2A is an open standard for communication and interoperability between independent, potentially opaque agent systems.
 
-A2A **1.0** defines normative concepts including `AgentCard`, `Message`, `Task`, `Artifact`, streaming, push notifications, and extensions.
+A2A **1.0** defines normative concepts including `AgentCard`, `Message`, `Task`, `Artifact`, streaming, push notifications, and extensions. The current protocol changelog includes **1.0.1** specification fixes while remaining in the 1.0 protocol family.
 
 Authoritative background:
 
@@ -198,6 +212,8 @@ It does not by itself define the complete cross-harness governance and evidence 
 
 Harness Operations implementations integrating AX should preserve AX's native lifecycle and resource semantics rather than flatten them into a generic executor API.
 
+AX manifests describe intended configuration. A Harness Operations integration should distinguish those declarations from effective runtime state and retain evidence of material sandbox, network-policy, resource-limit, and configuration facts when they matter to later audit or reconstruction. A declared boundary is not by itself proof that enforcement occurred.
+
 ## Jev and System One decision models
 
 ### Current scope
@@ -253,7 +269,7 @@ Enforcement
   What mechanism actually causes or prevents the action?
 ```
 
-Typed model output can reduce output-shape ambiguity and make decision inputs easier to validate, log, and audit. It does not by itself guarantee that the judgment is correct, that a downstream agent will obey it, or that an operational boundary is technically enforced.
+Typed model output can reduce output-shape ambiguity and make decision inputs easier to validate, log, and audit. It does not by itself guarantee that the judgment is correct, well-calibrated, robust to adversarial or poisoned input, or that a downstream agent will obey it or an operational boundary will be technically enforced.
 
 Harness Operations should preserve that separation rather than treating structured model output as equivalent to Authority, Approval, Policy, or enforcement.
 
@@ -347,7 +363,9 @@ A low-level permission request becomes an Approval only when it carries governan
 
 Jev and other structured decision systems can provide validated decision inputs, but a typed model answer is not itself an Approval, Authority grant, Policy rule, or enforcement boundary.
 
-An implementation should record enough provenance to explain which decision input influenced an operational action, while keeping the model judgment distinct from the rule that interpreted it and the mechanism that enforced it.
+An implementation should record enough provenance to explain which decision input influenced an operational action, while keeping the model judgment distinct from the rule that interpreted it and the mechanism that enforced it. Where material, that provenance can include the decision model/version, question or schema, returned probabilities/confidence, the policy or threshold version that interpreted them, and the resulting action.
+
+A confidence threshold is Policy or configuration, not governance by itself. Who may choose or change that threshold is a Governance question; the mechanism that applies it is an Enforcement question.
 
 ## Criteria for future interoperability work
 
