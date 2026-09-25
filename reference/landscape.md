@@ -1,8 +1,8 @@
 # Standards Landscape and Interoperability Boundaries
 
-**Status:** Harness Operations Reference Model 0.2
+**Status:** Harness Operations Reference Model 0.3
 
-**External-claim verification:** September 24, 2026
+**External-claim verification:** September 25, 2026
 
 ## Purpose
 
@@ -125,7 +125,7 @@ MCP is evolving quickly. These boundaries are time-sensitive and should shrink i
 
 The Agent Client Protocol standardizes communication between code editors or interactive clients and coding agents. ACP includes session lifecycle, prompts and updates, tool-call presentation, permission requests, configuration, and related coding-agent interactions.
 
-As of the Reference Model 0.2 verification on September 24, 2026, **ACP v1 remains stable** while protocol v2 remains explicitly unstable/draft. The current ACP changelog is at **1.9.1**.
+As of the Reference Model 0.3 verification on September 25, 2026, **ACP v1 remains stable** while protocol v2 remains explicitly unstable/draft. The current ACP changelog is at **1.9.1**.
 
 Authoritative background:
 
