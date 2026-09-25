@@ -1,0 +1,99 @@
+{
+  "schema_version": "0.1",
+  "reference_model": "v0.2",
+  "capabilities": [
+    {
+      "id": "access.interactive",
+      "group": "Access and deployment",
+      "name": "Interactive operation",
+      "definition": "Provides an operator-facing interactive interface for initiating or directing agent work."
+    },
+    {
+      "id": "access.machine_control",
+      "group": "Access and deployment",
+      "name": "Machine control surface",
+      "definition": "Provides a documented API, SDK, server, or equivalent machine-oriented control surface distinct from terminal UI automation."
+    },
+    {
+      "id": "identity.stable_session",
+      "group": "Identity and lifecycle",
+      "name": "Stable session identity",
+      "definition": "Exposes an identifier that can reliably refer to the same native execution/session context across relevant operations."
+    },
+    {
+      "id": "lifecycle.resume",
+      "group": "Identity and lifecycle",
+      "name": "Resume or reconnect",
+      "definition": "Can resume or reconnect to prior native execution state without treating the operation as an unrelated new session."
+    },
+    {
+      "id": "lifecycle.cancel",
+      "group": "Identity and lifecycle",
+      "name": "Cancellation or interruption",
+      "definition": "Provides a defined mechanism to request or cause interruption of in-progress agent execution, with observable semantics."
+    },
+    {
+      "id": "coordination.parallel",
+      "group": "Coordination",
+      "name": "Parallel agent execution",
+      "definition": "Can operate more than one agent session or delegated unit concurrently within the scoped interface or supplied control layer."
+    },
+    {
+      "id": "coordination.delegation",
+      "group": "Coordination",
+      "name": "Delegation or handoff",
+      "definition": "Supports attributable transfer or delegation of bounded work to another agent/session/system, natively or through a documented integration."
+    },
+    {
+      "id": "governance.pre_execution_gate",
+      "group": "Governance",
+      "name": "Pre-execution gate",
+      "definition": "Provides a control point that can prevent a protected action before the side effect occurs when its conditions are not satisfied."
+    },
+    {
+      "id": "governance.attributed_decision",
+      "group": "Governance",
+      "name": "Attributed decision",
+      "definition": "Can associate a material allow/deny/approval/review decision with an identifiable principal or decision source."
+    },
+    {
+      "id": "isolation.execution_boundary",
+      "group": "Isolation and credentials",
+      "name": "Execution isolation boundary",
+      "definition": "Provides a documented technical boundary limiting agent execution access to compute, filesystem, process, or network resources."
+    },
+    {
+      "id": "credentials.mediation",
+      "group": "Isolation and credentials",
+      "name": "Credential mediation",
+      "definition": "Can supply, scope, broker, or withhold credentials without requiring the model or agent context to receive unrestricted raw secrets."
+    },
+    {
+      "id": "resources.usage_reporting",
+      "group": "Resources",
+      "name": "Usage reporting",
+      "definition": "Reports measurable execution consumption such as tokens, cost, duration, compute, storage, or external-service use."
+    },
+    {
+      "id": "resources.enforced_limits",
+      "group": "Resources",
+      "name": "Enforced resource limits",
+      "definition": "Provides a technical mechanism that bounds at least one measurable execution resource or behavior rather than reporting it only after use."
+    },
+    {
+      "id": "evidence.event_export",
+      "group": "Evidence",
+      "name": "Operational event export",
+      "definition": "Exposes structured or reconstructable lifecycle/action events that can be retained outside ephemeral conversational state."
+    },
+    {
+      "id": "evidence.resolved_facts",
+      "group": "Evidence",
+      "name": "Resolved execution facts",
+      "definition": "Can retain or reconstruct material resolved facts such as model, policy/configuration, environment, artifact, or authority decisions for later explanation."
+    }
+  ],
+  "systems": [],
+  "observations": [],
+  "integrations": []
+}
