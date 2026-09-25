@@ -1,6 +1,6 @@
 # Harness Operations Reference Model
 
-**Status:** Harness Operations Reference Model 0.2
+**Status:** Harness Operations Reference Model 0.3
 
 ## Purpose
 

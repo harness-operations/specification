@@ -1,6 +1,6 @@
 # Landscape Comparison Methodology
 
-**Status:** Draft for Applied Harness Operations v0.3
+**Status:** Applied Harness Operations v0.3
 
 ## Purpose
 
