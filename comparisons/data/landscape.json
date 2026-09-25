@@ -166,6 +166,13 @@
           "url": "https://openai.com/index/unlocking-the-codex-harness/",
           "result": "not_tested",
           "notes": "OpenAI documents App Server as a bidirectional client-friendly JSON-RPC interface and first-class integration surface."
+        },
+        {
+          "type": "live_test",
+          "title": "Harness Operations exact-version interface smoke",
+          "url": "https://github.com/harness-operations/specification/blob/main/mappings/tests/interface-smoke.md",
+          "result": "pass",
+          "notes": "Credential-free CI installs the exact public package version and verifies the scoped machine-control entry point. Broader operational behavior remains untested."
         }
       ]
     },
@@ -565,6 +572,13 @@
           "url": "https://code.claude.com/docs/en/cli-reference",
           "result": "not_tested",
           "notes": "Claude Code documents --print and output-format options for non-interactive automation."
+        },
+        {
+          "type": "live_test",
+          "title": "Harness Operations exact-version interface smoke",
+          "url": "https://github.com/harness-operations/specification/blob/main/mappings/tests/interface-smoke.md",
+          "result": "pass",
+          "notes": "Credential-free CI installs the exact public package version and verifies the scoped machine-control entry point. Broader operational behavior remains untested."
         }
       ]
     },
