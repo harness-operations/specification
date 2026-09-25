@@ -111,6 +111,52 @@
       ],
       "homepage": "https://github.com/anthropics/claude-code",
       "notes": "Observations below are scoped to Claude Code CLI release 2.1.278, including native settings/hooks and the CLI --print automation surface. Claude Agent SDK, Desktop, hosted/cloud, and IDE-specific behavior are separate surfaces unless explicitly noted."
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor",
+      "roles": [
+        "harness"
+      ],
+      "homepage": "https://cursor.com/",
+      "notes": "Rolling Cursor CLI observations are scoped to first-party hosted documentation as reviewed September 25, 2026; no public immutable CLI release tag is asserted."
+    },
+    {
+      "id": "opencode",
+      "name": "OpenCode",
+      "roles": [
+        "harness"
+      ],
+      "homepage": "https://opencode.ai/",
+      "notes": "Observations are scoped to OpenCode v1.18.32 CLI/headless server surfaces."
+    },
+    {
+      "id": "agent-executor-ax",
+      "name": "Agent Executor (AX)",
+      "roles": [
+        "execution_runtime"
+      ],
+      "homepage": "https://agentexecutor.io/",
+      "notes": "Observations are scoped to google/ax v0.3.0 and ax.io/v1alpha1 resources."
+    },
+    {
+      "id": "typesafe-jev",
+      "name": "TypeSafe AI Jev",
+      "roles": [
+        "decision_service"
+      ],
+      "homepage": "https://typesafe.ai/",
+      "notes": "Observations are scoped to TypeSafe System One API 0.2.0 and Jev's public early-access framing."
+    },
+    {
+      "id": "paseo",
+      "name": "Paseo",
+      "roles": [
+        "client",
+        "control_layer"
+      ],
+      "homepage": "https://github.com/getpaseo/paseo",
+      "notes": "Observations are scoped to Paseo v0.9.2 control-layer/provider abstraction, not the native semantics of any underlying Harness."
     }
   ],
   "observations": [
@@ -944,7 +990,1954 @@
           "notes": "Release adds claude_code.managed_settings_resolved OpenTelemetry event with redacted settings/digests when enabled."
         }
       ]
+    },
+    {
+      "id": "cursor.cli-2026-09-25.access.interactive",
+      "system_id": "cursor",
+      "capability_id": "access.interactive",
+      "scope": {
+        "interface": "Cursor CLI",
+        "version": "hosted docs observed 2026-09-25",
+        "deployment_mode": "local CLI process",
+        "configuration": "Rolling first-party docs; exact installed CLI build not independently pinned in this observation."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Cursor CLI overview",
+          "url": "https://cursor.com/docs/cli/overview",
+          "result": "not_tested",
+          "notes": "Documents interactive terminal Agent."
+        }
+      ],
+      "limitations": [
+        "Rolling hosted interface; not an immutable binary-version claim."
+      ]
+    },
+    {
+      "id": "cursor.cli-2026-09-25.access.machine_control",
+      "system_id": "cursor",
+      "capability_id": "access.machine_control",
+      "scope": {
+        "interface": "Cursor CLI",
+        "version": "hosted docs observed 2026-09-25",
+        "deployment_mode": "local CLI process",
+        "configuration": "Rolling first-party docs; exact installed CLI build not independently pinned in this observation."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Cursor CLI headless and ACP surfaces",
+          "url": "https://prod.cursor.com/docs/cli/using",
+          "result": "not_tested",
+          "notes": "Documents --print automation and `agent acp` stdio JSON-RPC server."
+        }
+      ]
+    },
+    {
+      "id": "cursor.cli-2026-09-25.identity.stable_session",
+      "system_id": "cursor",
+      "capability_id": "identity.stable_session",
+      "scope": {
+        "interface": "Cursor CLI",
+        "version": "hosted docs observed 2026-09-25",
+        "deployment_mode": "local CLI process",
+        "configuration": "Rolling first-party docs; exact installed CLI build not independently pinned in this observation."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Cursor CLI history/resume",
+          "url": "https://prod.cursor.com/docs/cli/using",
+          "result": "not_tested",
+          "notes": "Documents resumable conversations by thread ID; hook schema exposes stable conversation/session IDs."
+        }
+      ]
+    },
+    {
+      "id": "cursor.cli-2026-09-25.lifecycle.resume",
+      "system_id": "cursor",
+      "capability_id": "lifecycle.resume",
+      "scope": {
+        "interface": "Cursor CLI",
+        "version": "hosted docs observed 2026-09-25",
+        "deployment_mode": "local CLI process",
+        "configuration": "Rolling first-party docs; exact installed CLI build not independently pinned in this observation."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Cursor CLI resume",
+          "url": "https://prod.cursor.com/docs/cli/using",
+          "result": "not_tested",
+          "notes": "Documents `--resume`, `--continue`, `agent resume`, and history selection."
+        }
+      ]
+    },
+    {
+      "id": "cursor.cli-2026-09-25.lifecycle.cancel",
+      "system_id": "cursor",
+      "capability_id": "lifecycle.cancel",
+      "scope": {
+        "interface": "Cursor CLI",
+        "version": "hosted docs observed 2026-09-25",
+        "deployment_mode": "local CLI process",
+        "configuration": "Rolling first-party docs; exact installed CLI build not independently pinned in this observation."
+      },
+      "finding": "unknown",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Cursor CLI current usage documentation",
+          "url": "https://prod.cursor.com/docs/cli/using",
+          "result": "not_tested",
+          "notes": "Reviewed docs establish resume and approvals but were insufficient to classify general in-progress cancellation semantics."
+        }
+      ],
+      "limitations": [
+        "No generic cancel/interrupt contract is claimed from this review."
+      ]
+    },
+    {
+      "id": "cursor.cli-2026-09-25.coordination.parallel",
+      "system_id": "cursor",
+      "capability_id": "coordination.parallel",
+      "scope": {
+        "interface": "Cursor CLI",
+        "version": "hosted docs observed 2026-09-25",
+        "deployment_mode": "local CLI process",
+        "configuration": "Rolling first-party docs; exact installed CLI build not independently pinned in this observation."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Cursor subagents",
+          "url": "https://prod.cursor.com/docs/subagents",
+          "result": "not_tested",
+          "notes": "Documents multiple subagents running concurrently and background execution."
+        }
+      ]
+    },
+    {
+      "id": "cursor.cli-2026-09-25.coordination.delegation",
+      "system_id": "cursor",
+      "capability_id": "coordination.delegation",
+      "scope": {
+        "interface": "Cursor CLI",
+        "version": "hosted docs observed 2026-09-25",
+        "deployment_mode": "local CLI process",
+        "configuration": "Rolling first-party docs; exact installed CLI build not independently pinned in this observation."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Cursor subagents and cloud handoff",
+          "url": "https://prod.cursor.com/docs/subagents",
+          "result": "not_tested",
+          "notes": "Documents parent-agent delegation to isolated subagents and cloud subagents."
+        }
+      ]
+    },
+    {
+      "id": "cursor.cli-2026-09-25.governance.pre_execution_gate",
+      "system_id": "cursor",
+      "capability_id": "governance.pre_execution_gate",
+      "scope": {
+        "interface": "Cursor CLI",
+        "version": "hosted docs observed 2026-09-25",
+        "deployment_mode": "local CLI process",
+        "configuration": "Rolling first-party docs; exact installed CLI build not independently pinned in this observation."
+      },
+      "finding": "available",
+      "mechanism": "configured_native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Cursor permissions and hooks",
+          "url": "https://prod.cursor.com/docs/hooks",
+          "result": "not_tested",
+          "notes": "Documents hooks that can block/modify risky operations and permission configuration."
+        }
+      ],
+      "prerequisites": [
+        "Configure blocking hooks/permissions for the protected operation."
+      ]
+    },
+    {
+      "id": "cursor.cli-2026-09-25.governance.attributed_decision",
+      "system_id": "cursor",
+      "capability_id": "governance.attributed_decision",
+      "scope": {
+        "interface": "Cursor CLI",
+        "version": "hosted docs observed 2026-09-25",
+        "deployment_mode": "local CLI process",
+        "configuration": "Rolling first-party docs; exact installed CLI build not independently pinned in this observation."
+      },
+      "finding": "partial",
+      "mechanism": "configured_native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Cursor hook common schema",
+          "url": "https://prod.cursor.com/docs/hooks",
+          "result": "not_tested",
+          "notes": "Hooks include conversation/session IDs and authenticated user_email when available."
+        }
+      ],
+      "limitations": [
+        "Not every permission/approval decision is shown to produce a durable named-Principal audit record."
+      ]
+    },
+    {
+      "id": "cursor.cli-2026-09-25.isolation.execution_boundary",
+      "system_id": "cursor",
+      "capability_id": "isolation.execution_boundary",
+      "scope": {
+        "interface": "Cursor CLI",
+        "version": "hosted docs observed 2026-09-25",
+        "deployment_mode": "local CLI process",
+        "configuration": "Rolling first-party docs; exact installed CLI build not independently pinned in this observation."
+      },
+      "finding": "available",
+      "mechanism": "configured_native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Cursor sandbox run modes",
+          "url": "https://cursor.com/docs/agent/security/run-modes",
+          "result": "not_tested",
+          "notes": "Documents filesystem/network sandbox controls for terminal commands."
+        }
+      ],
+      "prerequisites": [
+        "Sandbox must be enabled/configured for the intended boundary."
+      ]
+    },
+    {
+      "id": "cursor.cli-2026-09-25.credentials.mediation",
+      "system_id": "cursor",
+      "capability_id": "credentials.mediation",
+      "scope": {
+        "interface": "Cursor CLI",
+        "version": "hosted docs observed 2026-09-25",
+        "deployment_mode": "local CLI process",
+        "configuration": "Rolling first-party docs; exact installed CLI build not independently pinned in this observation."
+      },
+      "finding": "partial",
+      "mechanism": "configured_native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Cursor CLI secure sudo prompt",
+          "url": "https://cursor.com/docs/cli/overview",
+          "result": "not_tested",
+          "notes": "CLI docs state sudo passwords pass directly to sudo over secure IPC without being shown to the model."
+        }
+      ],
+      "limitations": [
+        "This establishes one mediated credential path, not general secret brokering for all tools/services."
+      ]
+    },
+    {
+      "id": "cursor.cli-2026-09-25.resources.usage_reporting",
+      "system_id": "cursor",
+      "capability_id": "resources.usage_reporting",
+      "scope": {
+        "interface": "Cursor CLI",
+        "version": "hosted docs observed 2026-09-25",
+        "deployment_mode": "local CLI process",
+        "configuration": "Rolling first-party docs; exact installed CLI build not independently pinned in this observation."
+      },
+      "finding": "unknown",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Cursor CLI overview",
+          "url": "https://cursor.com/docs/cli/overview",
+          "result": "not_tested",
+          "notes": "The reviewed CLI docs did not establish a general per-session token/cost/compute export surface."
+        }
+      ]
+    },
+    {
+      "id": "cursor.cli-2026-09-25.resources.enforced_limits",
+      "system_id": "cursor",
+      "capability_id": "resources.enforced_limits",
+      "scope": {
+        "interface": "Cursor CLI",
+        "version": "hosted docs observed 2026-09-25",
+        "deployment_mode": "local CLI process",
+        "configuration": "Rolling first-party docs; exact installed CLI build not independently pinned in this observation."
+      },
+      "finding": "unknown",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Cursor subagent docs",
+          "url": "https://prod.cursor.com/docs/subagents",
+          "result": "not_tested",
+          "notes": "Docs describe nesting and operational constraints, but this review does not classify them as a general user-configurable resource-limit mechanism."
+        }
+      ]
+    },
+    {
+      "id": "cursor.cli-2026-09-25.evidence.event_export",
+      "system_id": "cursor",
+      "capability_id": "evidence.event_export",
+      "scope": {
+        "interface": "Cursor CLI",
+        "version": "hosted docs observed 2026-09-25",
+        "deployment_mode": "local CLI process",
+        "configuration": "Rolling first-party docs; exact installed CLI build not independently pinned in this observation."
+      },
+      "finding": "available",
+      "mechanism": "configured_native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Cursor hooks event schema",
+          "url": "https://prod.cursor.com/docs/hooks",
+          "result": "not_tested",
+          "notes": "Hooks expose structured lifecycle/tool events with stable IDs, version/model metadata, user email when available, and transcript path."
+        }
+      ]
+    },
+    {
+      "id": "cursor.cli-2026-09-25.evidence.resolved_facts",
+      "system_id": "cursor",
+      "capability_id": "evidence.resolved_facts",
+      "scope": {
+        "interface": "Cursor CLI",
+        "version": "hosted docs observed 2026-09-25",
+        "deployment_mode": "local CLI process",
+        "configuration": "Rolling first-party docs; exact installed CLI build not independently pinned in this observation."
+      },
+      "finding": "partial",
+      "mechanism": "configured_native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Cursor hook common schema",
+          "url": "https://prod.cursor.com/docs/hooks",
+          "result": "not_tested",
+          "notes": "Hook inputs expose model/model_id/model parameters, cursor_version, workspace roots, user email, and transcript path."
+        }
+      ],
+      "limitations": [
+        "Does not establish a complete immutable record of every policy, credential, sandbox, approval, and side-effect fact."
+      ]
+    },
+    {
+      "id": "opencode.cli-server-1.18.32.access.interactive",
+      "system_id": "opencode",
+      "capability_id": "access.interactive",
+      "scope": {
+        "interface": "OpenCode CLI / headless server",
+        "version": "1.18.32",
+        "deployment_mode": "local CLI/server process",
+        "configuration": "Documentation-backed review of v1.18.32 and current first-party docs."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "OpenCode CLI",
+          "url": "https://dev.opencode.ai/docs/cli/",
+          "result": "not_tested",
+          "notes": "Documents TUI/CLI operation."
+        }
+      ]
+    },
+    {
+      "id": "opencode.cli-server-1.18.32.access.machine_control",
+      "system_id": "opencode",
+      "capability_id": "access.machine_control",
+      "scope": {
+        "interface": "OpenCode CLI / headless server",
+        "version": "1.18.32",
+        "deployment_mode": "local CLI/server process",
+        "configuration": "Documentation-backed review of v1.18.32 and current first-party docs."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "OpenCode headless server and ACP",
+          "url": "https://dev.opencode.ai/docs/cli/",
+          "result": "not_tested",
+          "notes": "Documents `opencode serve` HTTP API and `opencode acp` stdio server."
+        }
+      ]
+    },
+    {
+      "id": "opencode.cli-server-1.18.32.identity.stable_session",
+      "system_id": "opencode",
+      "capability_id": "identity.stable_session",
+      "scope": {
+        "interface": "OpenCode CLI / headless server",
+        "version": "1.18.32",
+        "deployment_mode": "local CLI/server process",
+        "configuration": "Documentation-backed review of v1.18.32 and current first-party docs."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "OpenCode session API",
+          "url": "https://dev.opencode.ai/docs/server/",
+          "result": "not_tested",
+          "notes": "Server exposes stable session IDs and session CRUD/status APIs."
+        }
+      ]
+    },
+    {
+      "id": "opencode.cli-server-1.18.32.lifecycle.resume",
+      "system_id": "opencode",
+      "capability_id": "lifecycle.resume",
+      "scope": {
+        "interface": "OpenCode CLI / headless server",
+        "version": "1.18.32",
+        "deployment_mode": "local CLI/server process",
+        "configuration": "Documentation-backed review of v1.18.32 and current first-party docs."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "OpenCode session persistence/import",
+          "url": "https://dev.opencode.ai/docs/cli/",
+          "result": "not_tested",
+          "notes": "CLI manages persistent sessions and supports import/export; server APIs continue work by session ID."
+        }
+      ]
+    },
+    {
+      "id": "opencode.cli-server-1.18.32.lifecycle.cancel",
+      "system_id": "opencode",
+      "capability_id": "lifecycle.cancel",
+      "scope": {
+        "interface": "OpenCode CLI / headless server",
+        "version": "1.18.32",
+        "deployment_mode": "local CLI/server process",
+        "configuration": "Documentation-backed review of v1.18.32 and current first-party docs."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "OpenCode session abort API",
+          "url": "https://dev.opencode.ai/docs/server/",
+          "result": "not_tested",
+          "notes": "Documents POST /session/:id/abort."
+        }
+      ]
+    },
+    {
+      "id": "opencode.cli-server-1.18.32.coordination.parallel",
+      "system_id": "opencode",
+      "capability_id": "coordination.parallel",
+      "scope": {
+        "interface": "OpenCode CLI / headless server",
+        "version": "1.18.32",
+        "deployment_mode": "local CLI/server process",
+        "configuration": "Documentation-backed review of v1.18.32 and current first-party docs."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "OpenCode primary agents/subagents",
+          "url": "https://dev.opencode.ai/docs/agents/",
+          "result": "not_tested",
+          "notes": "Documents subagents and parallel work units."
+        }
+      ]
+    },
+    {
+      "id": "opencode.cli-server-1.18.32.coordination.delegation",
+      "system_id": "opencode",
+      "capability_id": "coordination.delegation",
+      "scope": {
+        "interface": "OpenCode CLI / headless server",
+        "version": "1.18.32",
+        "deployment_mode": "local CLI/server process",
+        "configuration": "Documentation-backed review of v1.18.32 and current first-party docs."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "OpenCode task/subagent permissions",
+          "url": "https://dev.opencode.ai/docs/agents/",
+          "result": "not_tested",
+          "notes": "Documents Task-tool delegation to named subagents."
+        }
+      ]
+    },
+    {
+      "id": "opencode.cli-server-1.18.32.governance.pre_execution_gate",
+      "system_id": "opencode",
+      "capability_id": "governance.pre_execution_gate",
+      "scope": {
+        "interface": "OpenCode CLI / headless server",
+        "version": "1.18.32",
+        "deployment_mode": "local CLI/server process",
+        "configuration": "Documentation-backed review of v1.18.32 and current first-party docs."
+      },
+      "finding": "available",
+      "mechanism": "configured_native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "OpenCode permissions",
+          "url": "https://dev.opencode.ai/docs/permissions/",
+          "result": "not_tested",
+          "notes": "Permissions resolve tool actions to allow/ask/deny before execution."
+        }
+      ],
+      "prerequisites": [
+        "Configure ask/deny rules; auto mode changes ask behavior but explicit deny remains enforced."
+      ]
+    },
+    {
+      "id": "opencode.cli-server-1.18.32.governance.attributed_decision",
+      "system_id": "opencode",
+      "capability_id": "governance.attributed_decision",
+      "scope": {
+        "interface": "OpenCode CLI / headless server",
+        "version": "1.18.32",
+        "deployment_mode": "local CLI/server process",
+        "configuration": "Documentation-backed review of v1.18.32 and current first-party docs."
+      },
+      "finding": "partial",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "OpenCode permission response API",
+          "url": "https://dev.opencode.ai/docs/server/",
+          "result": "not_tested",
+          "notes": "Server exposes permission requests/responses bound to session and permission IDs."
+        }
+      ],
+      "limitations": [
+        "Reviewed docs do not establish durable named-human Principal attribution for every response."
+      ]
+    },
+    {
+      "id": "opencode.cli-server-1.18.32.isolation.execution_boundary",
+      "system_id": "opencode",
+      "capability_id": "isolation.execution_boundary",
+      "scope": {
+        "interface": "OpenCode CLI / headless server",
+        "version": "1.18.32",
+        "deployment_mode": "local CLI/server process",
+        "configuration": "Documentation-backed review of v1.18.32 and current first-party docs."
+      },
+      "finding": "partial",
+      "mechanism": "configured_native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "OpenCode permissions and external_directory controls",
+          "url": "https://dev.opencode.ai/docs/permissions/",
+          "result": "not_tested",
+          "notes": "Tool/file/command/external-directory controls provide application-layer access boundaries."
+        }
+      ],
+      "limitations": [
+        "This review does not establish an OS-level sandbox equivalent to AX/Cursor sandboxing."
+      ]
+    },
+    {
+      "id": "opencode.cli-server-1.18.32.credentials.mediation",
+      "system_id": "opencode",
+      "capability_id": "credentials.mediation",
+      "scope": {
+        "interface": "OpenCode CLI / headless server",
+        "version": "1.18.32",
+        "deployment_mode": "local CLI/server process",
+        "configuration": "Documentation-backed review of v1.18.32 and current first-party docs."
+      },
+      "finding": "unknown",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "OpenCode server/CLI docs",
+          "url": "https://dev.opencode.ai/docs/cli/",
+          "result": "not_tested",
+          "notes": "Authentication/server password are documented, but general credential brokering away from model/tool context was not established."
+        }
+      ]
+    },
+    {
+      "id": "opencode.cli-server-1.18.32.resources.usage_reporting",
+      "system_id": "opencode",
+      "capability_id": "resources.usage_reporting",
+      "scope": {
+        "interface": "OpenCode CLI / headless server",
+        "version": "1.18.32",
+        "deployment_mode": "local CLI/server process",
+        "configuration": "Documentation-backed review of v1.18.32 and current first-party docs."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "OpenCode stats",
+          "url": "https://dev.opencode.ai/docs/cli/",
+          "result": "not_tested",
+          "notes": "`opencode stats` reports token usage and cost statistics."
+        }
+      ]
+    },
+    {
+      "id": "opencode.cli-server-1.18.32.resources.enforced_limits",
+      "system_id": "opencode",
+      "capability_id": "resources.enforced_limits",
+      "scope": {
+        "interface": "OpenCode CLI / headless server",
+        "version": "1.18.32",
+        "deployment_mode": "local CLI/server process",
+        "configuration": "Documentation-backed review of v1.18.32 and current first-party docs."
+      },
+      "finding": "partial",
+      "mechanism": "configured_native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "OpenCode subagent depth",
+          "url": "https://dev.opencode.ai/docs/config/",
+          "result": "not_tested",
+          "notes": "`subagent_depth` enforces a bounded nesting behavior."
+        }
+      ],
+      "limitations": [
+        "Does not establish generic token/cost/duration/compute budgets."
+      ]
+    },
+    {
+      "id": "opencode.cli-server-1.18.32.evidence.event_export",
+      "system_id": "opencode",
+      "capability_id": "evidence.event_export",
+      "scope": {
+        "interface": "OpenCode CLI / headless server",
+        "version": "1.18.32",
+        "deployment_mode": "local CLI/server process",
+        "configuration": "Documentation-backed review of v1.18.32 and current first-party docs."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "OpenCode export/server APIs",
+          "url": "https://dev.opencode.ai/docs/cli/",
+          "result": "not_tested",
+          "notes": "CLI exports session data as JSON and server exposes structured session state."
+        }
+      ]
+    },
+    {
+      "id": "opencode.cli-server-1.18.32.evidence.resolved_facts",
+      "system_id": "opencode",
+      "capability_id": "evidence.resolved_facts",
+      "scope": {
+        "interface": "OpenCode CLI / headless server",
+        "version": "1.18.32",
+        "deployment_mode": "local CLI/server process",
+        "configuration": "Documentation-backed review of v1.18.32 and current first-party docs."
+      },
+      "finding": "partial",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "OpenCode export and server session APIs",
+          "url": "https://dev.opencode.ai/docs/server/",
+          "result": "not_tested",
+          "notes": "Persistent session state, diffs, status, permission requests, and exportable data provide material evidence."
+        }
+      ],
+      "limitations": [
+        "Complete historical policy/credential/environment resolution is not established."
+      ]
+    },
+    {
+      "id": "agent-executor-ax.control-plane-0.3.0.access.interactive",
+      "system_id": "agent-executor-ax",
+      "capability_id": "access.interactive",
+      "scope": {
+        "interface": "AX CLI/control plane",
+        "version": "0.3.0 (ax.io/v1alpha1)",
+        "deployment_mode": "Kubernetes control plane + Agent Substrate runtime",
+        "configuration": "Tagged v0.3.0 README/API concepts; project explicitly remains pre-stable."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "AX v0.3.0 README",
+          "url": "https://github.com/google/ax/blob/v0.3.0/README.md",
+          "result": "not_tested",
+          "notes": "CLI supports apply/get/watch/describe/ssh to operate tasks."
+        }
+      ]
+    },
+    {
+      "id": "agent-executor-ax.control-plane-0.3.0.access.machine_control",
+      "system_id": "agent-executor-ax",
+      "capability_id": "access.machine_control",
+      "scope": {
+        "interface": "AX CLI/control plane",
+        "version": "0.3.0 (ax.io/v1alpha1)",
+        "deployment_mode": "Kubernetes control plane + Agent Substrate runtime",
+        "configuration": "Tagged v0.3.0 README/API concepts; project explicitly remains pre-stable."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "AX control plane",
+          "url": "https://github.com/google/ax/blob/v0.3.0/README.md",
+          "result": "not_tested",
+          "notes": "CLI talks to control plane over gRPC; design exposes declarative manifests."
+        }
+      ]
+    },
+    {
+      "id": "agent-executor-ax.control-plane-0.3.0.identity.stable_session",
+      "system_id": "agent-executor-ax",
+      "capability_id": "identity.stable_session",
+      "scope": {
+        "interface": "AX CLI/control plane",
+        "version": "0.3.0 (ax.io/v1alpha1)",
+        "deployment_mode": "Kubernetes control plane + Agent Substrate runtime",
+        "configuration": "Tagged v0.3.0 README/API concepts; project explicitly remains pre-stable."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "AX Task identity",
+          "url": "https://github.com/google/ax/blob/v0.3.0/README.md",
+          "result": "not_tested",
+          "notes": "Named Task resources provide stable runtime identities."
+        }
+      ]
+    },
+    {
+      "id": "agent-executor-ax.control-plane-0.3.0.lifecycle.resume",
+      "system_id": "agent-executor-ax",
+      "capability_id": "lifecycle.resume",
+      "scope": {
+        "interface": "AX CLI/control plane",
+        "version": "0.3.0 (ax.io/v1alpha1)",
+        "deployment_mode": "Kubernetes control plane + Agent Substrate runtime",
+        "configuration": "Tagged v0.3.0 README/API concepts; project explicitly remains pre-stable."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "AX suspend/resume",
+          "url": "https://github.com/google/ax/blob/v0.3.0/README.md",
+          "result": "not_tested",
+          "notes": "Documents checkpoint/suspend and resume of Tasks."
+        }
+      ]
+    },
+    {
+      "id": "agent-executor-ax.control-plane-0.3.0.lifecycle.cancel",
+      "system_id": "agent-executor-ax",
+      "capability_id": "lifecycle.cancel",
+      "scope": {
+        "interface": "AX CLI/control plane",
+        "version": "0.3.0 (ax.io/v1alpha1)",
+        "deployment_mode": "Kubernetes control plane + Agent Substrate runtime",
+        "configuration": "Tagged v0.3.0 README/API concepts; project explicitly remains pre-stable."
+      },
+      "finding": "partial",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "AX task lifecycle commands",
+          "url": "https://github.com/google/ax/blob/v0.3.0/README.md",
+          "result": "not_tested",
+          "notes": "AX exposes suspend and delete; the reviewed docs do not define a universal cancellation/rollback semantic."
+        }
+      ],
+      "limitations": [
+        "Delete/suspend are runtime lifecycle controls, not proof of rollback of external side effects."
+      ]
+    },
+    {
+      "id": "agent-executor-ax.control-plane-0.3.0.coordination.parallel",
+      "system_id": "agent-executor-ax",
+      "capability_id": "coordination.parallel",
+      "scope": {
+        "interface": "AX CLI/control plane",
+        "version": "0.3.0 (ax.io/v1alpha1)",
+        "deployment_mode": "Kubernetes control plane + Agent Substrate runtime",
+        "configuration": "Tagged v0.3.0 README/API concepts; project explicitly remains pre-stable."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "AX scale model",
+          "url": "https://github.com/google/ax/blob/v0.3.0/README.md",
+          "result": "not_tested",
+          "notes": "Designed for very large numbers of concurrent Task actors."
+        }
+      ]
+    },
+    {
+      "id": "agent-executor-ax.control-plane-0.3.0.coordination.delegation",
+      "system_id": "agent-executor-ax",
+      "capability_id": "coordination.delegation",
+      "scope": {
+        "interface": "AX CLI/control plane",
+        "version": "0.3.0 (ax.io/v1alpha1)",
+        "deployment_mode": "Kubernetes control plane + Agent Substrate runtime",
+        "configuration": "Tagged v0.3.0 README/API concepts; project explicitly remains pre-stable."
+      },
+      "finding": "not_applicable",
+      "mechanism": "not_applicable",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "AX runtime scope",
+          "url": "https://github.com/google/ax/blob/v0.3.0/README.md",
+          "result": "not_tested",
+          "notes": "AX executes workloads; agent-to-agent delegation semantics are not the runtime's defined role."
+        }
+      ]
+    },
+    {
+      "id": "agent-executor-ax.control-plane-0.3.0.governance.pre_execution_gate",
+      "system_id": "agent-executor-ax",
+      "capability_id": "governance.pre_execution_gate",
+      "scope": {
+        "interface": "AX CLI/control plane",
+        "version": "0.3.0 (ax.io/v1alpha1)",
+        "deployment_mode": "Kubernetes control plane + Agent Substrate runtime",
+        "configuration": "Tagged v0.3.0 README/API concepts; project explicitly remains pre-stable."
+      },
+      "finding": "available",
+      "mechanism": "configured_native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "AX Gateway/network policy",
+          "url": "https://github.com/google/ax/blob/v0.3.0/README.md",
+          "result": "not_tested",
+          "notes": "Gateway allowlists can technically prevent disallowed outbound actions."
+        }
+      ],
+      "limitations": [
+        "This is policy enforcement at a runtime/network boundary, not a human Approval system."
+      ]
+    },
+    {
+      "id": "agent-executor-ax.control-plane-0.3.0.governance.attributed_decision",
+      "system_id": "agent-executor-ax",
+      "capability_id": "governance.attributed_decision",
+      "scope": {
+        "interface": "AX CLI/control plane",
+        "version": "0.3.0 (ax.io/v1alpha1)",
+        "deployment_mode": "Kubernetes control plane + Agent Substrate runtime",
+        "configuration": "Tagged v0.3.0 README/API concepts; project explicitly remains pre-stable."
+      },
+      "finding": "not_applicable",
+      "mechanism": "not_applicable",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "AX runtime scope",
+          "url": "https://github.com/google/ax/blob/v0.3.0/README.md",
+          "result": "not_tested",
+          "notes": "The runtime does not itself define organizational approval attribution."
+        }
+      ]
+    },
+    {
+      "id": "agent-executor-ax.control-plane-0.3.0.isolation.execution_boundary",
+      "system_id": "agent-executor-ax",
+      "capability_id": "isolation.execution_boundary",
+      "scope": {
+        "interface": "AX CLI/control plane",
+        "version": "0.3.0 (ax.io/v1alpha1)",
+        "deployment_mode": "Kubernetes control plane + Agent Substrate runtime",
+        "configuration": "Tagged v0.3.0 README/API concepts; project explicitly remains pre-stable."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "AX Task sandbox",
+          "url": "https://github.com/google/ax/blob/v0.3.0/README.md",
+          "result": "not_tested",
+          "notes": "Tasks run untrusted code in isolated sandboxes."
+        }
+      ]
+    },
+    {
+      "id": "agent-executor-ax.control-plane-0.3.0.credentials.mediation",
+      "system_id": "agent-executor-ax",
+      "capability_id": "credentials.mediation",
+      "scope": {
+        "interface": "AX CLI/control plane",
+        "version": "0.3.0 (ax.io/v1alpha1)",
+        "deployment_mode": "Kubernetes control plane + Agent Substrate runtime",
+        "configuration": "Tagged v0.3.0 README/API concepts; project explicitly remains pre-stable."
+      },
+      "finding": "available",
+      "mechanism": "configured_native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "AX Gateway and Model credentials",
+          "url": "https://github.com/google/ax/blob/v0.3.0/README.md",
+          "result": "not_tested",
+          "notes": "Gateway can inject credentials to incoming requests and Model can source secrets from Kubernetes secrets."
+        }
+      ]
+    },
+    {
+      "id": "agent-executor-ax.control-plane-0.3.0.resources.usage_reporting",
+      "system_id": "agent-executor-ax",
+      "capability_id": "resources.usage_reporting",
+      "scope": {
+        "interface": "AX CLI/control plane",
+        "version": "0.3.0 (ax.io/v1alpha1)",
+        "deployment_mode": "Kubernetes control plane + Agent Substrate runtime",
+        "configuration": "Tagged v0.3.0 README/API concepts; project explicitly remains pre-stable."
+      },
+      "finding": "unknown",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "AX v0.3.0 runtime docs",
+          "url": "https://github.com/google/ax/blob/v0.3.0/README.md",
+          "result": "not_tested",
+          "notes": "The reviewed docs establish resource limits/status but not a general usage accounting/export contract."
+        }
+      ]
+    },
+    {
+      "id": "agent-executor-ax.control-plane-0.3.0.resources.enforced_limits",
+      "system_id": "agent-executor-ax",
+      "capability_id": "resources.enforced_limits",
+      "scope": {
+        "interface": "AX CLI/control plane",
+        "version": "0.3.0 (ax.io/v1alpha1)",
+        "deployment_mode": "Kubernetes control plane + Agent Substrate runtime",
+        "configuration": "Tagged v0.3.0 README/API concepts; project explicitly remains pre-stable."
+      },
+      "finding": "available",
+      "mechanism": "configured_native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "AX Task CPU/memory limits",
+          "url": "https://github.com/google/ax/blob/v0.3.0/README.md",
+          "result": "not_tested",
+          "notes": "Task explicitly supports sandboxed CPU and memory limits."
+        }
+      ]
+    },
+    {
+      "id": "agent-executor-ax.control-plane-0.3.0.evidence.event_export",
+      "system_id": "agent-executor-ax",
+      "capability_id": "evidence.event_export",
+      "scope": {
+        "interface": "AX CLI/control plane",
+        "version": "0.3.0 (ax.io/v1alpha1)",
+        "deployment_mode": "Kubernetes control plane + Agent Substrate runtime",
+        "configuration": "Tagged v0.3.0 README/API concepts; project explicitly remains pre-stable."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "AX watch/status",
+          "url": "https://github.com/google/ax/blob/v0.3.0/README.md",
+          "result": "not_tested",
+          "notes": "`ax watch` streams phase and condition changes and resources expose live status."
+        }
+      ]
+    },
+    {
+      "id": "agent-executor-ax.control-plane-0.3.0.evidence.resolved_facts",
+      "system_id": "agent-executor-ax",
+      "capability_id": "evidence.resolved_facts",
+      "scope": {
+        "interface": "AX CLI/control plane",
+        "version": "0.3.0 (ax.io/v1alpha1)",
+        "deployment_mode": "Kubernetes control plane + Agent Substrate runtime",
+        "configuration": "Tagged v0.3.0 README/API concepts; project explicitly remains pre-stable."
+      },
+      "finding": "partial",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "AX declarative resources and status",
+          "url": "https://github.com/google/ax/blob/v0.3.0/README.md",
+          "result": "not_tested",
+          "notes": "Applied manifests plus Task/resource status retain substantial desired/effective runtime facts."
+        }
+      ],
+      "limitations": [
+        "Declared configuration is not by itself proof every enforcement action occurred; complete audit history is not established."
+      ]
+    },
+    {
+      "id": "typesafe-jev.api-0.2.0.access.interactive",
+      "system_id": "typesafe-jev",
+      "capability_id": "access.interactive",
+      "scope": {
+        "interface": "TypeSafe System One API",
+        "version": "0.2.0",
+        "deployment_mode": "hosted HTTP API",
+        "configuration": "Early-access API reviewed September 25, 2026."
+      },
+      "finding": "not_applicable",
+      "mechanism": "not_applicable",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "TypeSafe API 0.2.0",
+          "url": "https://api.typesafe.ai/docs",
+          "result": "not_tested",
+          "notes": "Jev is consumed as a decision API rather than an operator chat surface."
+        }
+      ]
+    },
+    {
+      "id": "typesafe-jev.api-0.2.0.access.machine_control",
+      "system_id": "typesafe-jev",
+      "capability_id": "access.machine_control",
+      "scope": {
+        "interface": "TypeSafe System One API",
+        "version": "0.2.0",
+        "deployment_mode": "hosted HTTP API",
+        "configuration": "Early-access API reviewed September 25, 2026."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "TypeSafe System One API",
+          "url": "https://api.typesafe.ai/docs",
+          "result": "not_tested",
+          "notes": "POST /v1/systemone exposes typed decision requests to software."
+        }
+      ]
+    },
+    {
+      "id": "typesafe-jev.api-0.2.0.identity.stable_session",
+      "system_id": "typesafe-jev",
+      "capability_id": "identity.stable_session",
+      "scope": {
+        "interface": "TypeSafe System One API",
+        "version": "0.2.0",
+        "deployment_mode": "hosted HTTP API",
+        "configuration": "Early-access API reviewed September 25, 2026."
+      },
+      "finding": "not_applicable",
+      "mechanism": "not_applicable",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "TypeSafe API scope",
+          "url": "https://api.typesafe.ai/docs",
+          "result": "not_tested",
+          "notes": "The public decision API does not define Harness session identity."
+        }
+      ]
+    },
+    {
+      "id": "typesafe-jev.api-0.2.0.lifecycle.resume",
+      "system_id": "typesafe-jev",
+      "capability_id": "lifecycle.resume",
+      "scope": {
+        "interface": "TypeSafe System One API",
+        "version": "0.2.0",
+        "deployment_mode": "hosted HTTP API",
+        "configuration": "Early-access API reviewed September 25, 2026."
+      },
+      "finding": "not_applicable",
+      "mechanism": "not_applicable",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "TypeSafe API scope",
+          "url": "https://api.typesafe.ai/docs",
+          "result": "not_tested",
+          "notes": "Decision calls are not a resumable Harness session lifecycle."
+        }
+      ]
+    },
+    {
+      "id": "typesafe-jev.api-0.2.0.lifecycle.cancel",
+      "system_id": "typesafe-jev",
+      "capability_id": "lifecycle.cancel",
+      "scope": {
+        "interface": "TypeSafe System One API",
+        "version": "0.2.0",
+        "deployment_mode": "hosted HTTP API",
+        "configuration": "Early-access API reviewed September 25, 2026."
+      },
+      "finding": "not_applicable",
+      "mechanism": "not_applicable",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "TypeSafe API scope",
+          "url": "https://api.typesafe.ai/docs",
+          "result": "not_tested",
+          "notes": "Harness execution cancellation is outside this decision-service role."
+        }
+      ]
+    },
+    {
+      "id": "typesafe-jev.api-0.2.0.coordination.parallel",
+      "system_id": "typesafe-jev",
+      "capability_id": "coordination.parallel",
+      "scope": {
+        "interface": "TypeSafe System One API",
+        "version": "0.2.0",
+        "deployment_mode": "hosted HTTP API",
+        "configuration": "Early-access API reviewed September 25, 2026."
+      },
+      "finding": "not_applicable",
+      "mechanism": "not_applicable",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "TypeSafe API scope",
+          "url": "https://api.typesafe.ai/docs",
+          "result": "not_tested",
+          "notes": "Agent-session concurrency is outside this decision-service role."
+        }
+      ]
+    },
+    {
+      "id": "typesafe-jev.api-0.2.0.coordination.delegation",
+      "system_id": "typesafe-jev",
+      "capability_id": "coordination.delegation",
+      "scope": {
+        "interface": "TypeSafe System One API",
+        "version": "0.2.0",
+        "deployment_mode": "hosted HTTP API",
+        "configuration": "Early-access API reviewed September 25, 2026."
+      },
+      "finding": "not_applicable",
+      "mechanism": "not_applicable",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "TypeSafe API scope",
+          "url": "https://api.typesafe.ai/docs",
+          "result": "not_tested",
+          "notes": "Agent delegation is outside this decision-service role."
+        }
+      ]
+    },
+    {
+      "id": "typesafe-jev.api-0.2.0.governance.pre_execution_gate",
+      "system_id": "typesafe-jev",
+      "capability_id": "governance.pre_execution_gate",
+      "scope": {
+        "interface": "TypeSafe System One API",
+        "version": "0.2.0",
+        "deployment_mode": "hosted HTTP API",
+        "configuration": "Early-access API reviewed September 25, 2026."
+      },
+      "finding": "not_applicable",
+      "mechanism": "not_applicable",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Introducing System One Models & Jev",
+          "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+          "result": "not_tested",
+          "notes": "Jev returns structured decisions for software to consume; surrounding code must enforce any consequence."
+        }
+      ],
+      "limitations": [
+        "A typed judgment is not itself a technical gate."
+      ]
+    },
+    {
+      "id": "typesafe-jev.api-0.2.0.governance.attributed_decision",
+      "system_id": "typesafe-jev",
+      "capability_id": "governance.attributed_decision",
+      "scope": {
+        "interface": "TypeSafe System One API",
+        "version": "0.2.0",
+        "deployment_mode": "hosted HTTP API",
+        "configuration": "Early-access API reviewed September 25, 2026."
+      },
+      "finding": "partial",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "TypeSafe API 0.2.0 schemas",
+          "url": "https://api.typesafe.ai/docs",
+          "result": "not_tested",
+          "notes": "Responses are attributable to a selected model/API call, but that is not equivalent to an authorized human/machine Principal governance decision."
+        }
+      ],
+      "limitations": [
+        "Model provenance is not organizational Authority."
+      ]
+    },
+    {
+      "id": "typesafe-jev.api-0.2.0.isolation.execution_boundary",
+      "system_id": "typesafe-jev",
+      "capability_id": "isolation.execution_boundary",
+      "scope": {
+        "interface": "TypeSafe System One API",
+        "version": "0.2.0",
+        "deployment_mode": "hosted HTTP API",
+        "configuration": "Early-access API reviewed September 25, 2026."
+      },
+      "finding": "not_applicable",
+      "mechanism": "not_applicable",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "TypeSafe decision-service scope",
+          "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+          "result": "not_tested",
+          "notes": "Execution isolation belongs to downstream runtime/harness controls."
+        }
+      ]
+    },
+    {
+      "id": "typesafe-jev.api-0.2.0.credentials.mediation",
+      "system_id": "typesafe-jev",
+      "capability_id": "credentials.mediation",
+      "scope": {
+        "interface": "TypeSafe System One API",
+        "version": "0.2.0",
+        "deployment_mode": "hosted HTTP API",
+        "configuration": "Early-access API reviewed September 25, 2026."
+      },
+      "finding": "not_applicable",
+      "mechanism": "not_applicable",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "TypeSafe API authentication",
+          "url": "https://api.typesafe.ai/docs",
+          "result": "not_tested",
+          "notes": "Bearer authentication protects API access but is not a Harness credential-brokering mechanism."
+        }
+      ]
+    },
+    {
+      "id": "typesafe-jev.api-0.2.0.resources.usage_reporting",
+      "system_id": "typesafe-jev",
+      "capability_id": "resources.usage_reporting",
+      "scope": {
+        "interface": "TypeSafe System One API",
+        "version": "0.2.0",
+        "deployment_mode": "hosted HTTP API",
+        "configuration": "Early-access API reviewed September 25, 2026."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "TypeSafe API Usage schema",
+          "url": "https://api.typesafe.ai/docs",
+          "result": "not_tested",
+          "notes": "Public OpenAPI includes a Usage schema in System One responses."
+        }
+      ]
+    },
+    {
+      "id": "typesafe-jev.api-0.2.0.resources.enforced_limits",
+      "system_id": "typesafe-jev",
+      "capability_id": "resources.enforced_limits",
+      "scope": {
+        "interface": "TypeSafe System One API",
+        "version": "0.2.0",
+        "deployment_mode": "hosted HTTP API",
+        "configuration": "Early-access API reviewed September 25, 2026."
+      },
+      "finding": "not_applicable",
+      "mechanism": "not_applicable",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "TypeSafe decision-service scope",
+          "url": "https://api.typesafe.ai/docs",
+          "result": "not_tested",
+          "notes": "Downstream execution/resource limits are outside this role."
+        }
+      ]
+    },
+    {
+      "id": "typesafe-jev.api-0.2.0.evidence.event_export",
+      "system_id": "typesafe-jev",
+      "capability_id": "evidence.event_export",
+      "scope": {
+        "interface": "TypeSafe System One API",
+        "version": "0.2.0",
+        "deployment_mode": "hosted HTTP API",
+        "configuration": "Early-access API reviewed September 25, 2026."
+      },
+      "finding": "unknown",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "TypeSafe API 0.2.0",
+          "url": "https://api.typesafe.ai/docs",
+          "result": "not_tested",
+          "notes": "Request/response records can be logged by callers, but no independent operational event-export surface was established."
+        }
+      ]
+    },
+    {
+      "id": "typesafe-jev.api-0.2.0.evidence.resolved_facts",
+      "system_id": "typesafe-jev",
+      "capability_id": "evidence.resolved_facts",
+      "scope": {
+        "interface": "TypeSafe System One API",
+        "version": "0.2.0",
+        "deployment_mode": "hosted HTTP API",
+        "configuration": "Early-access API reviewed September 25, 2026."
+      },
+      "finding": "partial",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "TypeSafe System One schemas",
+          "url": "https://api.typesafe.ai/docs",
+          "result": "not_tested",
+          "notes": "Typed answers/probabilities and usage provide decision evidence."
+        }
+      ],
+      "limitations": [
+        "Callers remain responsible for preserving prompt/schema, model/version, policy interpretation, authorization, and downstream outcome provenance."
+      ]
+    },
+    {
+      "id": "paseo.control-layer-0.9.2.access.interactive",
+      "system_id": "paseo",
+      "capability_id": "access.interactive",
+      "scope": {
+        "interface": "Paseo client/control layer",
+        "version": "0.9.2",
+        "deployment_mode": "desktop/web/mobile clients + self-hosted daemon/CLI",
+        "configuration": "Tagged v0.9.2 release and provider-registry source."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "release_note",
+          "title": "Paseo v0.9.2 release",
+          "url": "https://github.com/getpaseo/paseo/releases/tag/v0.9.2",
+          "result": "not_tested",
+          "notes": "Published desktop/client release with agent workspace UI."
+        }
+      ]
+    },
+    {
+      "id": "paseo.control-layer-0.9.2.access.machine_control",
+      "system_id": "paseo",
+      "capability_id": "access.machine_control",
+      "scope": {
+        "interface": "Paseo client/control layer",
+        "version": "0.9.2",
+        "deployment_mode": "desktop/web/mobile clients + self-hosted daemon/CLI",
+        "configuration": "Tagged v0.9.2 release and provider-registry source."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "source_code",
+          "title": "Paseo provider abstraction",
+          "url": "https://github.com/getpaseo/paseo/blob/v0.9.2/packages/server/src/server/agent/provider-registry.ts",
+          "result": "not_tested",
+          "notes": "Provider clients expose programmatic create/resume/run/subscribe/interrupt interfaces inside the daemon/control layer."
+        }
+      ]
+    },
+    {
+      "id": "paseo.control-layer-0.9.2.identity.stable_session",
+      "system_id": "paseo",
+      "capability_id": "identity.stable_session",
+      "scope": {
+        "interface": "Paseo client/control layer",
+        "version": "0.9.2",
+        "deployment_mode": "desktop/web/mobile clients + self-hosted daemon/CLI",
+        "configuration": "Tagged v0.9.2 release and provider-registry source."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "source_code",
+          "title": "Paseo AgentSession provider wrapper",
+          "url": "https://github.com/getpaseo/paseo/blob/v0.9.2/packages/server/src/server/agent/provider-registry.ts",
+          "result": "not_tested",
+          "notes": "Wrapped sessions preserve provider + native session id and persistence handles."
+        }
+      ]
+    },
+    {
+      "id": "paseo.control-layer-0.9.2.lifecycle.resume",
+      "system_id": "paseo",
+      "capability_id": "lifecycle.resume",
+      "scope": {
+        "interface": "Paseo client/control layer",
+        "version": "0.9.2",
+        "deployment_mode": "desktop/web/mobile clients + self-hosted daemon/CLI",
+        "configuration": "Tagged v0.9.2 release and provider-registry source."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "source_code",
+          "title": "Paseo resumeSession abstraction",
+          "url": "https://github.com/getpaseo/paseo/blob/v0.9.2/packages/server/src/server/agent/provider-registry.ts",
+          "result": "not_tested",
+          "notes": "Provider clients expose resumeSession with persistence handles."
+        }
+      ]
+    },
+    {
+      "id": "paseo.control-layer-0.9.2.lifecycle.cancel",
+      "system_id": "paseo",
+      "capability_id": "lifecycle.cancel",
+      "scope": {
+        "interface": "Paseo client/control layer",
+        "version": "0.9.2",
+        "deployment_mode": "desktop/web/mobile clients + self-hosted daemon/CLI",
+        "configuration": "Tagged v0.9.2 release and provider-registry source."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "source_code",
+          "title": "Paseo AgentSession interrupt",
+          "url": "https://github.com/getpaseo/paseo/blob/v0.9.2/packages/server/src/server/agent/provider-registry.ts",
+          "result": "not_tested",
+          "notes": "Control-layer session abstraction exposes interrupt()."
+        }
+      ],
+      "limitations": [
+        "Actual downstream interruption semantics remain provider-native."
+      ]
+    },
+    {
+      "id": "paseo.control-layer-0.9.2.coordination.parallel",
+      "system_id": "paseo",
+      "capability_id": "coordination.parallel",
+      "scope": {
+        "interface": "Paseo client/control layer",
+        "version": "0.9.2",
+        "deployment_mode": "desktop/web/mobile clients + self-hosted daemon/CLI",
+        "configuration": "Tagged v0.9.2 release and provider-registry source."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "release_note",
+          "title": "Paseo v0.9.2 control-layer release",
+          "url": "https://github.com/getpaseo/paseo/releases/tag/v0.9.2",
+          "result": "not_tested",
+          "notes": "Paseo manages multiple workspaces/sessions/providers concurrently."
+        }
+      ]
+    },
+    {
+      "id": "paseo.control-layer-0.9.2.coordination.delegation",
+      "system_id": "paseo",
+      "capability_id": "coordination.delegation",
+      "scope": {
+        "interface": "Paseo client/control layer",
+        "version": "0.9.2",
+        "deployment_mode": "desktop/web/mobile clients + self-hosted daemon/CLI",
+        "configuration": "Tagged v0.9.2 release and provider-registry source."
+      },
+      "finding": "partial",
+      "mechanism": "external_controller",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "source_code",
+          "title": "Paseo provider/subagent support",
+          "url": "https://github.com/getpaseo/paseo/blob/v0.9.2/packages/server/src/server/agent/provider-registry.ts",
+          "result": "not_tested",
+          "notes": "Control layer preserves provider capabilities and can expose underlying subagent behavior."
+        }
+      ],
+      "limitations": [
+        "Delegation semantics remain Harness-native rather than a universal Paseo protocol."
+      ]
+    },
+    {
+      "id": "paseo.control-layer-0.9.2.governance.pre_execution_gate",
+      "system_id": "paseo",
+      "capability_id": "governance.pre_execution_gate",
+      "scope": {
+        "interface": "Paseo client/control layer",
+        "version": "0.9.2",
+        "deployment_mode": "desktop/web/mobile clients + self-hosted daemon/CLI",
+        "configuration": "Tagged v0.9.2 release and provider-registry source."
+      },
+      "finding": "available",
+      "mechanism": "external_controller",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "source_code",
+          "title": "Paseo pending permissions / tool policy",
+          "url": "https://github.com/getpaseo/paseo/blob/v0.9.2/packages/server/src/server/agent/provider-registry.ts",
+          "result": "not_tested",
+          "notes": "AgentSession exposes pending permissions/respondToPermission and provider contracts can apply tool policy/exact MCP preapproval."
+        }
+      ],
+      "limitations": [
+        "Effectiveness depends on the selected provider's enforcement semantics."
+      ]
+    },
+    {
+      "id": "paseo.control-layer-0.9.2.governance.attributed_decision",
+      "system_id": "paseo",
+      "capability_id": "governance.attributed_decision",
+      "scope": {
+        "interface": "Paseo client/control layer",
+        "version": "0.9.2",
+        "deployment_mode": "desktop/web/mobile clients + self-hosted daemon/CLI",
+        "configuration": "Tagged v0.9.2 release and provider-registry source."
+      },
+      "finding": "partial",
+      "mechanism": "external_controller",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "source_code",
+          "title": "Paseo permission response abstraction",
+          "url": "https://github.com/getpaseo/paseo/blob/v0.9.2/packages/server/src/server/agent/provider-registry.ts",
+          "result": "not_tested",
+          "notes": "Control layer carries permission request/response state."
+        }
+      ],
+      "limitations": [
+        "This source review does not establish a universal durable named-Principal audit identity for every response."
+      ]
+    },
+    {
+      "id": "paseo.control-layer-0.9.2.isolation.execution_boundary",
+      "system_id": "paseo",
+      "capability_id": "isolation.execution_boundary",
+      "scope": {
+        "interface": "Paseo client/control layer",
+        "version": "0.9.2",
+        "deployment_mode": "desktop/web/mobile clients + self-hosted daemon/CLI",
+        "configuration": "Tagged v0.9.2 release and provider-registry source."
+      },
+      "finding": "unknown",
+      "mechanism": "external_controller",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "source_code",
+          "title": "Paseo provider registry",
+          "url": "https://github.com/getpaseo/paseo/blob/v0.9.2/packages/server/src/server/agent/provider-registry.ts",
+          "result": "not_tested",
+          "notes": "Paseo configures/controls Harness providers, but no universal Paseo-owned execution sandbox boundary is established by this scope."
+        }
+      ]
+    },
+    {
+      "id": "paseo.control-layer-0.9.2.credentials.mediation",
+      "system_id": "paseo",
+      "capability_id": "credentials.mediation",
+      "scope": {
+        "interface": "Paseo client/control layer",
+        "version": "0.9.2",
+        "deployment_mode": "desktop/web/mobile clients + self-hosted daemon/CLI",
+        "configuration": "Tagged v0.9.2 release and provider-registry source."
+      },
+      "finding": "unknown",
+      "mechanism": "external_controller",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "source_code",
+          "title": "Paseo provider runtime settings",
+          "url": "https://github.com/getpaseo/paseo/blob/v0.9.2/packages/server/src/server/agent/provider-registry.ts",
+          "result": "not_tested",
+          "notes": "Environment/runtime settings exist, but the strong credential-brokering definition is not established by this review."
+        }
+      ]
+    },
+    {
+      "id": "paseo.control-layer-0.9.2.resources.usage_reporting",
+      "system_id": "paseo",
+      "capability_id": "resources.usage_reporting",
+      "scope": {
+        "interface": "Paseo client/control layer",
+        "version": "0.9.2",
+        "deployment_mode": "desktop/web/mobile clients + self-hosted daemon/CLI",
+        "configuration": "Tagged v0.9.2 release and provider-registry source."
+      },
+      "finding": "unknown",
+      "mechanism": "external_controller",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "source_code",
+          "title": "Paseo provider event abstraction",
+          "url": "https://github.com/getpaseo/paseo/blob/v0.9.2/packages/server/src/server/agent/provider-registry.ts",
+          "result": "not_tested",
+          "notes": "Provider event streams are normalized, but a general cross-provider usage accounting contract was not established in this review."
+        }
+      ]
+    },
+    {
+      "id": "paseo.control-layer-0.9.2.resources.enforced_limits",
+      "system_id": "paseo",
+      "capability_id": "resources.enforced_limits",
+      "scope": {
+        "interface": "Paseo client/control layer",
+        "version": "0.9.2",
+        "deployment_mode": "desktop/web/mobile clients + self-hosted daemon/CLI",
+        "configuration": "Tagged v0.9.2 release and provider-registry source."
+      },
+      "finding": "unknown",
+      "mechanism": "external_controller",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "source_code",
+          "title": "Paseo provider abstraction",
+          "url": "https://github.com/getpaseo/paseo/blob/v0.9.2/packages/server/src/server/agent/provider-registry.ts",
+          "result": "not_tested",
+          "notes": "No general cross-provider resource-budget enforcement contract was established."
+        }
+      ]
+    },
+    {
+      "id": "paseo.control-layer-0.9.2.evidence.event_export",
+      "system_id": "paseo",
+      "capability_id": "evidence.event_export",
+      "scope": {
+        "interface": "Paseo client/control layer",
+        "version": "0.9.2",
+        "deployment_mode": "desktop/web/mobile clients + self-hosted daemon/CLI",
+        "configuration": "Tagged v0.9.2 release and provider-registry source."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "source_code",
+          "title": "Paseo AgentStreamEvent / streamHistory",
+          "url": "https://github.com/getpaseo/paseo/blob/v0.9.2/packages/server/src/server/agent/provider-registry.ts",
+          "result": "not_tested",
+          "notes": "Session wrapper exposes subscribe and streamHistory over provider-mapped events."
+        }
+      ]
+    },
+    {
+      "id": "paseo.control-layer-0.9.2.evidence.resolved_facts",
+      "system_id": "paseo",
+      "capability_id": "evidence.resolved_facts",
+      "scope": {
+        "interface": "Paseo client/control layer",
+        "version": "0.9.2",
+        "deployment_mode": "desktop/web/mobile clients + self-hosted daemon/CLI",
+        "configuration": "Tagged v0.9.2 release and provider-registry source."
+      },
+      "finding": "partial",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "evidence": [
+        {
+          "type": "source_code",
+          "title": "Paseo runtime info / persistence / provider mapping",
+          "url": "https://github.com/getpaseo/paseo/blob/v0.9.2/packages/server/src/server/agent/provider-registry.ts",
+          "result": "not_tested",
+          "notes": "Control layer preserves provider, session id, runtime info, model/mode configuration and persistence handles."
+        }
+      ],
+      "limitations": [
+        "Complete immutable policy/credential/environment/approval evidence is not established."
+      ]
     }
   ],
-  "integrations": []
+  "integrations": [
+    {
+      "id": "paseo-0.9.2-to-codex",
+      "source": {
+        "system_id": "paseo",
+        "interface": "Paseo provider/control layer",
+        "version": "0.9.2",
+        "deployment_mode": "self-hosted daemon/client"
+      },
+      "target": {
+        "system_id": "openai-codex",
+        "interface": "Codex App Server",
+        "version": "0.157.0",
+        "deployment_mode": "provider process/interface"
+      },
+      "operation": "create, resume, observe, and control provider sessions",
+      "boundary": "native Paseo Codex App Server adapter",
+      "finding": "partial",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "Adapter is implemented in Paseo v0.9.2 source, but Harness Operations has not independently live-tested this product pair in v0.3."
+      ],
+      "evidence": [
+        {
+          "type": "source_code",
+          "title": "Paseo v0.9.2 provider registry",
+          "url": "https://github.com/getpaseo/paseo/blob/v0.9.2/packages/server/src/server/agent/provider-registry.ts",
+          "result": "not_tested",
+          "notes": "Provider registry constructs CodexAppServerAgentClient."
+        },
+        {
+          "type": "release_note",
+          "title": "Paseo v0.9.2 release",
+          "url": "https://github.com/getpaseo/paseo/releases/tag/v0.9.2",
+          "result": "not_tested",
+          "notes": "Version scope for the control layer."
+        }
+      ]
+    },
+    {
+      "id": "paseo-0.9.2-to-claude",
+      "source": {
+        "system_id": "paseo",
+        "interface": "Paseo provider/control layer",
+        "version": "0.9.2",
+        "deployment_mode": "self-hosted daemon/client"
+      },
+      "target": {
+        "system_id": "anthropic-claude-code",
+        "interface": "Claude Code provider interface",
+        "version": "2.1.278 mapping scope",
+        "deployment_mode": "provider process/interface"
+      },
+      "operation": "create, resume, observe, and control provider sessions",
+      "boundary": "native Paseo Claude provider adapter",
+      "finding": "partial",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "Adapter is implemented in Paseo v0.9.2 source, but Harness Operations has not independently live-tested this product pair in v0.3."
+      ],
+      "evidence": [
+        {
+          "type": "source_code",
+          "title": "Paseo v0.9.2 provider registry",
+          "url": "https://github.com/getpaseo/paseo/blob/v0.9.2/packages/server/src/server/agent/provider-registry.ts",
+          "result": "not_tested",
+          "notes": "Provider registry constructs ClaudeAgentClient."
+        },
+        {
+          "type": "release_note",
+          "title": "Paseo v0.9.2 release",
+          "url": "https://github.com/getpaseo/paseo/releases/tag/v0.9.2",
+          "result": "not_tested",
+          "notes": "Version scope for the control layer."
+        }
+      ]
+    },
+    {
+      "id": "paseo-0.9.2-to-opencode",
+      "source": {
+        "system_id": "paseo",
+        "interface": "Paseo provider/control layer",
+        "version": "0.9.2",
+        "deployment_mode": "self-hosted daemon/client"
+      },
+      "target": {
+        "system_id": "opencode",
+        "interface": "OpenCode server/provider interface",
+        "version": "1.18.32 matrix scope",
+        "deployment_mode": "provider process/interface"
+      },
+      "operation": "create, resume, observe, and control provider sessions",
+      "boundary": "native Paseo OpenCode adapter/bridge",
+      "finding": "partial",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "Adapter is implemented in Paseo v0.9.2 source, but Harness Operations has not independently live-tested this product pair in v0.3."
+      ],
+      "evidence": [
+        {
+          "type": "source_code",
+          "title": "Paseo v0.9.2 provider registry",
+          "url": "https://github.com/getpaseo/paseo/blob/v0.9.2/packages/server/src/server/agent/provider-registry.ts",
+          "result": "not_tested",
+          "notes": "Provider registry constructs OpenCodeAgentClient with OpenCode bridge support."
+        },
+        {
+          "type": "release_note",
+          "title": "Paseo v0.9.2 release",
+          "url": "https://github.com/getpaseo/paseo/releases/tag/v0.9.2",
+          "result": "not_tested",
+          "notes": "Version scope for the control layer."
+        }
+      ]
+    },
+    {
+      "id": "paseo-0.9.2-to-cursor",
+      "source": {
+        "system_id": "paseo",
+        "interface": "Paseo provider/control layer",
+        "version": "0.9.2",
+        "deployment_mode": "self-hosted daemon/client"
+      },
+      "target": {
+        "system_id": "cursor",
+        "interface": "Cursor ACP",
+        "version": "rolling docs observed 2026-09-25",
+        "deployment_mode": "provider process/interface"
+      },
+      "operation": "create, resume, observe, and control provider sessions",
+      "boundary": "ACP stdio via Cursor CLI",
+      "finding": "partial",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "Adapter is implemented in Paseo v0.9.2 source, but Harness Operations has not independently live-tested this product pair in v0.3."
+      ],
+      "evidence": [
+        {
+          "type": "source_code",
+          "title": "Paseo v0.9.2 provider registry",
+          "url": "https://github.com/getpaseo/paseo/blob/v0.9.2/packages/server/src/server/agent/provider-registry.ts",
+          "result": "not_tested",
+          "notes": "Provider registry constructs CursorACPAgentClient and defaults command to cursor-agent acp."
+        },
+        {
+          "type": "release_note",
+          "title": "Paseo v0.9.2 release",
+          "url": "https://github.com/getpaseo/paseo/releases/tag/v0.9.2",
+          "result": "not_tested",
+          "notes": "Version scope for the control layer."
+        }
+      ]
+    }
+  ]
 }
