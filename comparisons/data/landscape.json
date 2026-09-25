@@ -102,6 +102,15 @@
       ],
       "homepage": "https://github.com/openai/codex",
       "notes": "Observations below are scoped to the App Server interface at Codex CLI release 0.157.0, not Codex Web, Agents API, IDE, or TUI behavior unless explicitly stated."
+    },
+    {
+      "id": "anthropic-claude-code",
+      "name": "Anthropic Claude Code",
+      "roles": [
+        "harness"
+      ],
+      "homepage": "https://github.com/anthropics/claude-code",
+      "notes": "Observations below are scoped to Claude Code CLI release 2.1.278, including native settings/hooks and the CLI --print automation surface. Claude Agent SDK, Desktop, hosted/cloud, and IDE-specific behavior are separate surfaces unless explicitly noted."
     }
   ],
   "observations": [
@@ -501,6 +510,424 @@
           "url": "https://github.com/openai/codex/blob/rust-v0.157.0/codex-rs/app-server/README.md",
           "result": "not_tested",
           "notes": "The tagged protocol documentation exposes/persists substantial thread, turn, item, settings, attachment, and lifecycle metadata."
+        }
+      ]
+    },
+    {
+      "id": "anthropic-claude-code.cli-2.1.278.access.interactive",
+      "system_id": "anthropic-claude-code",
+      "capability_id": "access.interactive",
+      "scope": {
+        "interface": "Claude Code CLI",
+        "version": "2.1.278",
+        "deployment_mode": "local CLI process",
+        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "This observation is for the terminal CLI, not Claude Desktop or IDE-specific UX."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Claude Code CLI reference",
+          "url": "https://code.claude.com/docs/en/cli-reference",
+          "result": "not_tested",
+          "notes": "Claude Code CLI is an interactive terminal interface."
+        }
+      ]
+    },
+    {
+      "id": "anthropic-claude-code.cli-2.1.278.access.machine_control",
+      "system_id": "anthropic-claude-code",
+      "capability_id": "access.machine_control",
+      "scope": {
+        "interface": "Claude Code CLI",
+        "version": "2.1.278",
+        "deployment_mode": "local CLI process",
+        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "prerequisites": [
+        "Use Claude Code non-interactive/print mode for scripting and automation."
+      ],
+      "limitations": [
+        "Agent SDK provides a richer programmatic surface but is deliberately out of scope for this CLI row."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Claude Code CLI scripting/automation",
+          "url": "https://code.claude.com/docs/en/cli-reference",
+          "result": "not_tested",
+          "notes": "Claude Code documents --print and output-format options for non-interactive automation."
+        }
+      ]
+    },
+    {
+      "id": "anthropic-claude-code.cli-2.1.278.identity.stable_session",
+      "system_id": "anthropic-claude-code",
+      "capability_id": "identity.stable_session",
+      "scope": {
+        "interface": "Claude Code CLI",
+        "version": "2.1.278",
+        "deployment_mode": "local CLI process",
+        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "Session identity is native Claude Code state and should not be renamed to a Harness Operations Run."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Claude Code session identity and resume",
+          "url": "https://code.claude.com/docs/en/commands",
+          "result": "not_tested",
+          "notes": "Claude Code exposes session IDs and resume/continue operations; CLAUDE_CODE_SESSION_ID is also exported to subprocesses/hooks."
+        }
+      ]
+    },
+    {
+      "id": "anthropic-claude-code.cli-2.1.278.lifecycle.resume",
+      "system_id": "anthropic-claude-code",
+      "capability_id": "lifecycle.resume",
+      "scope": {
+        "interface": "Claude Code CLI",
+        "version": "2.1.278",
+        "deployment_mode": "local CLI process",
+        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "Resume semantics depend on persisted Claude Code session state."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Claude Code /resume and --resume",
+          "url": "https://code.claude.com/docs/en/commands",
+          "result": "not_tested",
+          "notes": "Claude Code documents resuming conversations by ID or name."
+        }
+      ]
+    },
+    {
+      "id": "anthropic-claude-code.cli-2.1.278.lifecycle.cancel",
+      "system_id": "anthropic-claude-code",
+      "capability_id": "lifecycle.cancel",
+      "scope": {
+        "interface": "Claude Code CLI",
+        "version": "2.1.278",
+        "deployment_mode": "local CLI process",
+        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "Interrupting the current turn does not imply rollback of already completed tool side effects."
+      ],
+      "evidence": [
+        {
+          "type": "release_note",
+          "title": "Claude Code 2.1.275 release notes",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.275",
+          "result": "not_tested",
+          "notes": "Anthropic documents send-now behavior that interrupts the current turn; ordinary CLI interruption semantics are separate from rollback."
+        }
+      ]
+    },
+    {
+      "id": "anthropic-claude-code.cli-2.1.278.coordination.parallel",
+      "system_id": "anthropic-claude-code",
+      "capability_id": "coordination.parallel",
+      "scope": {
+        "interface": "Claude Code CLI",
+        "version": "2.1.278",
+        "deployment_mode": "local CLI process",
+        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "prerequisites": [
+        "Subagents are available natively; agent teams are experimental and require explicit enablement."
+      ],
+      "limitations": [
+        "Agent teams are experimental; this finding does not claim identical semantics between subagents and agent teams."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Claude Code subagents and agent teams",
+          "url": "https://code.claude.com/docs/en/features-overview",
+          "result": "not_tested",
+          "notes": "Anthropic documents isolated subagents and experimental agent teams for parallel work."
+        }
+      ]
+    },
+    {
+      "id": "anthropic-claude-code.cli-2.1.278.coordination.delegation",
+      "system_id": "anthropic-claude-code",
+      "capability_id": "coordination.delegation",
+      "scope": {
+        "interface": "Claude Code CLI",
+        "version": "2.1.278",
+        "deployment_mode": "local CLI process",
+        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "This finding covers Claude Code-native delegation to subagents; it does not establish cross-vendor handoff or A2A interoperability."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Claude Code subagent delegation",
+          "url": "https://code.claude.com/docs/en/features-overview",
+          "result": "not_tested",
+          "notes": "Claude Code documents subagents as isolated workers managed by the main agent that return summarized results."
+        }
+      ]
+    },
+    {
+      "id": "anthropic-claude-code.cli-2.1.278.governance.pre_execution_gate",
+      "system_id": "anthropic-claude-code",
+      "capability_id": "governance.pre_execution_gate",
+      "scope": {
+        "interface": "Claude Code CLI",
+        "version": "2.1.278",
+        "deployment_mode": "local CLI process",
+        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+      },
+      "finding": "available",
+      "mechanism": "configured_native",
+      "reviewed_at": "2026-09-25",
+      "prerequisites": [
+        "Use permission rules and/or PreToolUse hooks rather than bypassPermissions when a protected gate is required."
+      ],
+      "limitations": [
+        "Prompt instructions such as CLAUDE.md are not equivalent to this technical gate."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Claude Code permissions and PreToolUse hooks",
+          "url": "https://code.claude.com/docs/en/permissions",
+          "result": "not_tested",
+          "notes": "Anthropic documents deny rules, permission modes, callbacks, and hooks that can block a tool before execution."
+        }
+      ]
+    },
+    {
+      "id": "anthropic-claude-code.cli-2.1.278.governance.attributed_decision",
+      "system_id": "anthropic-claude-code",
+      "capability_id": "governance.attributed_decision",
+      "scope": {
+        "interface": "Claude Code CLI",
+        "version": "2.1.278",
+        "deployment_mode": "local CLI process",
+        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+      },
+      "finding": "partial",
+      "mechanism": "configured_native",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "Session/hook context can identify the session and decision path, but the reviewed CLI docs do not establish durable named-human Principal attribution for every approval decision."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Claude Code permission evaluation and session IDs",
+          "url": "https://code.claude.com/docs/en/permissions",
+          "result": "not_tested",
+          "notes": "Permission decisions are explicit and hooks receive session context, but organization-grade Principal attribution is not established by this scoped review."
+        }
+      ]
+    },
+    {
+      "id": "anthropic-claude-code.cli-2.1.278.isolation.execution_boundary",
+      "system_id": "anthropic-claude-code",
+      "capability_id": "isolation.execution_boundary",
+      "scope": {
+        "interface": "Claude Code CLI",
+        "version": "2.1.278",
+        "deployment_mode": "local CLI process",
+        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+      },
+      "finding": "available",
+      "mechanism": "configured_native",
+      "reviewed_at": "2026-09-25",
+      "prerequisites": [
+        "Enable supported sandbox mode and do not use bypass permissions when an isolation boundary is required."
+      ],
+      "limitations": [
+        "Sandbox availability and enforcement depend on platform/configuration; permission prompts alone are not an OS isolation boundary."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Claude Code sandbox and security controls",
+          "url": "https://code.claude.com/docs/en/security",
+          "result": "not_tested",
+          "notes": "Anthropic documents optional OS-level sandboxing for shell execution and platform-dependent sandbox mode."
+        }
+      ]
+    },
+    {
+      "id": "anthropic-claude-code.cli-2.1.278.credentials.mediation",
+      "system_id": "anthropic-claude-code",
+      "capability_id": "credentials.mediation",
+      "scope": {
+        "interface": "Claude Code CLI",
+        "version": "2.1.278",
+        "deployment_mode": "local CLI process",
+        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+      },
+      "finding": "unknown",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "Claude Code supports managed authentication, helpers, gateways, and environment configuration, but this review has not established the stronger matrix definition that credentials are consistently brokered/withheld from model context and tools."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Claude Code environment and authentication configuration",
+          "url": "https://code.claude.com/docs/en/env-vars",
+          "result": "not_tested",
+          "notes": "First-party docs describe credential/authentication configuration but also warn that secrets exposed to tools can enter transcripts; stronger mediation remains unproven in this scope."
+        }
+      ]
+    },
+    {
+      "id": "anthropic-claude-code.cli-2.1.278.resources.usage_reporting",
+      "system_id": "anthropic-claude-code",
+      "capability_id": "resources.usage_reporting",
+      "scope": {
+        "interface": "Claude Code CLI",
+        "version": "2.1.278",
+        "deployment_mode": "local CLI process",
+        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+      },
+      "finding": "available",
+      "mechanism": "configured_native",
+      "reviewed_at": "2026-09-25",
+      "prerequisites": [
+        "Enable/configure Claude Code monitoring or use the built-in usage/status surfaces as appropriate."
+      ],
+      "limitations": [
+        "Exact exported metrics depend on telemetry configuration and privacy settings."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Claude Code OpenTelemetry and usage monitoring",
+          "url": "https://code.claude.com/docs/en/monitoring-usage",
+          "result": "not_tested",
+          "notes": "Anthropic documents OpenTelemetry metrics/logging and built-in usage/status surfaces."
+        }
+      ]
+    },
+    {
+      "id": "anthropic-claude-code.cli-2.1.278.resources.enforced_limits",
+      "system_id": "anthropic-claude-code",
+      "capability_id": "resources.enforced_limits",
+      "scope": {
+        "interface": "Claude Code CLI",
+        "version": "2.1.278",
+        "deployment_mode": "local CLI process",
+        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+      },
+      "finding": "available",
+      "mechanism": "configured_native",
+      "reviewed_at": "2026-09-25",
+      "prerequisites": [
+        "Configure one of the documented hard bounds such as tool/subagent concurrency or output-token limits."
+      ],
+      "limitations": [
+        "This does not imply a universal monetary budget or all-resource quota system."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Claude Code execution/resource environment variables",
+          "url": "https://code.claude.com/docs/en/env-vars",
+          "result": "not_tested",
+          "notes": "Anthropic documents hard configuration bounds including CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY and CLAUDE_CODE_MAX_OUTPUT_TOKENS."
+        }
+      ]
+    },
+    {
+      "id": "anthropic-claude-code.cli-2.1.278.evidence.event_export",
+      "system_id": "anthropic-claude-code",
+      "capability_id": "evidence.event_export",
+      "scope": {
+        "interface": "Claude Code CLI",
+        "version": "2.1.278",
+        "deployment_mode": "local CLI process",
+        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+      },
+      "finding": "available",
+      "mechanism": "configured_native",
+      "reviewed_at": "2026-09-25",
+      "prerequisites": [
+        "Persist session transcripts and/or enable OpenTelemetry export."
+      ],
+      "limitations": [
+        "Raw prompt/tool content is redacted or disabled by default in several telemetry paths; enabling raw content has privacy implications."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Claude Code session history and OpenTelemetry export",
+          "url": "https://code.claude.com/docs/en/env-vars",
+          "result": "not_tested",
+          "notes": "Claude Code stores session transcripts by default and documents optional OTel metrics/log/event export with configurable redaction."
+        }
+      ]
+    },
+    {
+      "id": "anthropic-claude-code.cli-2.1.278.evidence.resolved_facts",
+      "system_id": "anthropic-claude-code",
+      "capability_id": "evidence.resolved_facts",
+      "scope": {
+        "interface": "Claude Code CLI",
+        "version": "2.1.278",
+        "deployment_mode": "local CLI process",
+        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+      },
+      "finding": "partial",
+      "mechanism": "configured_native",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "Session transcripts, version/session IDs, hook data, managed-settings telemetry, and OTel signals retain material facts, but this review has not established a complete durable record of every resolved policy, credential, environment, approval identity, and side-effect fact."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Claude Code environment/telemetry reference",
+          "url": "https://code.claude.com/docs/en/env-vars",
+          "result": "not_tested",
+          "notes": "Claude Code documents session IDs, transcript persistence controls, version fields, and telemetry configuration."
+        },
+        {
+          "type": "release_note",
+          "title": "Claude Code 2.1.274 release notes",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.274",
+          "result": "not_tested",
+          "notes": "Release adds claude_code.managed_settings_resolved OpenTelemetry event with redacted settings/digests when enabled."
         }
       ]
     }
