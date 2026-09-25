@@ -1,0 +1,103 @@
+name: Publish reference-model release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - RELEASE.json
+
+permissions:
+  contents: write
+
+jobs:
+  verify-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact release commit
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Read release request
+        id: release
+        run: |
+          version="$(jq -r '.version' RELEASE.json)"
+          title="$(jq -r '.title' RELEASE.json)"
+          notes_file="$(jq -r '.notes_file' RELEASE.json)"
+
+          if [[ ! "$version" =~ ^v[0-9]+\.[0-9]+(\.[0-9]+)?$ ]]; then
+            echo "Invalid version: $version" >&2
+            exit 1
+          fi
+          if [[ -z "$title" || "$title" == "null" ]]; then
+            echo "Release title is required" >&2
+            exit 1
+          fi
+          if [[ "$notes_file" == "null" || ! -f "$notes_file" ]]; then
+            echo "Release notes file is missing: $notes_file" >&2
+            exit 1
+          fi
+
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "title=$title" >> "$GITHUB_OUTPUT"
+          echo "notes_file=$notes_file" >> "$GITHUB_OUTPUT"
+
+      - name: Ensure tag and release do not already exist
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.release.outputs.version }}
+        run: |
+          if git rev-parse "$VERSION" >/dev/null 2>&1; then
+            echo "Tag already exists: $VERSION" >&2
+            exit 1
+          fi
+          if gh release view "$VERSION" >/dev/null 2>&1; then
+            echo "Release already exists: $VERSION" >&2
+            exit 1
+          fi
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Validate comparison dataset
+        run: |
+          python -m pip install 'jsonschema>=4.23,<5'
+          python comparisons/validate.py
+
+      - name: Run applied example tests
+        working-directory: examples/approved-artifact-handoff
+        run: |
+          python -m unittest -v
+          python demo.py
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Run exact-version Harness interface smoke
+        run: bash mappings/tests/interface-smoke.sh
+
+      - name: Create annotated release tag
+        env:
+          VERSION: ${{ steps.release.outputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "$VERSION" "$GITHUB_SHA" -m "Harness Operations Reference Model ${VERSION#v}"
+          git push origin "$VERSION"
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.release.outputs.version }}
+          TITLE: ${{ steps.release.outputs.title }}
+          NOTES_FILE: ${{ steps.release.outputs.notes_file }}
+        run: |
+          gh release create "$VERSION" \
+            --verify-tag \
+            --title "$TITLE" \
+            --notes-file "$NOTES_FILE"
