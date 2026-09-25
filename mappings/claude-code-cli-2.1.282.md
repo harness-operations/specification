@@ -7,8 +7,8 @@
 - **System:** Anthropic Claude Code
 - **Role:** Harness
 - **Interface/surface:** Claude Code CLI, including native settings/hooks and the CLI `--print` automation surface
-- **Version:** 2.1.278
-- **Release date:** September 19, 2026
+- **Version:** 2.1.282
+- **Release date:** September 24, 2026
 - **Deployment mode:** local CLI process
 - **Reviewed at:** September 25, 2026
 - **Evidence status:** first-party documentation and release notes; live Harness Operations tests pending
@@ -17,7 +17,7 @@ Claude Agent SDK, Claude Desktop, hosted/cloud sessions, remote-control-specific
 
 ## Primary sources
 
-- https://github.com/anthropics/claude-code/releases/tag/v2.1.278
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.282
 - https://code.claude.com/docs/en/cli-reference
 - https://code.claude.com/docs/en/permissions
 - https://code.claude.com/docs/en/hooks
@@ -106,7 +106,7 @@ Unknown:
 
 ## Live-test plan
 
-Issue #28 remains open until selected behaviors are tested against Claude Code 2.1.278 or an explicitly documented replacement version.
+Issue #28 remains open until selected behaviors are tested against Claude Code 2.1.282 or an explicitly documented replacement version.
 
 Initial tests should cover:
 

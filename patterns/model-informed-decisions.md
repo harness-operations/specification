@@ -112,7 +112,7 @@ A model-informed decision can feed application Policy, but a configured App Serv
 
 The application should not treat the model's answer as equivalent to an App Server approval response.
 
-### Claude Code CLI 2.1.278
+### Claude Code CLI 2.1.282
 
 A model or external decision service can inform a permission decision, while a blocking permission rule or `PreToolUse` hook provides the actual pre-execution control.
 

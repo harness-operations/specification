@@ -65,7 +65,7 @@ The reviewed SDK exposes `TurnHandle.interrupt()` for an active turn.
 
 That is an execution-control primitive, not proof that external side effects were rolled back. A Harness Operations integration should separately track what the turn had already caused and whether downstream work remained active.
 
-### Claude Code CLI 2.1.278
+### Claude Code CLI 2.1.282
 
 Claude Code exposes current-turn interruption behavior and session lifecycle controls. Native subagents add another concern: the parent/worker relationship must be understood before assuming interruption of one context terminates delegated work.
 

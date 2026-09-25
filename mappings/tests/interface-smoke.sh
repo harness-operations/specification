@@ -10,12 +10,12 @@ codex_help="$(npx -y @openai/codex@0.157.0 app-server --help)"
 printf '%s\n' "$codex_help"
 grep -Eiq 'app[- ]server|Usage' <<<"$codex_help"
 
-echo "== Claude Code 2.1.278 =="
-claude_version="$(npx -y @anthropic-ai/claude-code@2.1.278 --version)"
+echo "== Claude Code 2.1.282 =="
+claude_version="$(npx -y @anthropic-ai/claude-code@2.1.282 --version)"
 echo "$claude_version"
-grep -Eq '2\.1\.278' <<<"$claude_version"
+grep -Eq '2\.1\.282' <<<"$claude_version"
 
-claude_help="$(npx -y @anthropic-ai/claude-code@2.1.278 --help)"
+claude_help="$(npx -y @anthropic-ai/claude-code@2.1.282 --help)"
 printf '%s\n' "$claude_help"
 grep -Eq -- '--print|--output-format' <<<"$claude_help"
 
