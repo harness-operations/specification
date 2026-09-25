@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import json
+from collections import defaultdict
 from pathlib import Path
 import sys
 
@@ -9,6 +10,15 @@ ROOT = Path(__file__).resolve().parent
 SCHEMA_PATH = ROOT / "schema.json"
 CANONICAL_PATH = ROOT / "data" / "landscape.json"
 FIXTURES = sorted((ROOT / "fixtures").glob("*.json"))
+
+URL_REQUIRED_EVIDENCE = {
+    "primary_documentation",
+    "source_code",
+    "release_note",
+    "live_test",
+    "operator_report",
+}
+EXECUTED_EVIDENCE = {"live_test", "fixture_test"}
 
 
 def load(path):
@@ -23,6 +33,39 @@ def unique_ids(items, label, path):
         raise ValueError(f"{path}: duplicate {label} ids: {', '.join(duplicates)}")
 
 
+def scope_key(observation):
+    scope = observation["scope"]
+    return (
+        observation["system_id"],
+        scope["interface"],
+        scope["version"],
+        scope["deployment_mode"],
+    )
+
+
+def validate_evidence(evidence, owner_id, path):
+    for item in evidence:
+        evidence_type = item["type"]
+        result = item.get("result")
+
+        if evidence_type in URL_REQUIRED_EVIDENCE and not item.get("url"):
+            raise ValueError(
+                f"{path}: {owner_id} evidence type {evidence_type} requires a URL"
+            )
+
+        if evidence_type in EXECUTED_EVIDENCE:
+            if result not in {"pass", "fail", "mixed"}:
+                raise ValueError(
+                    f"{path}: {owner_id} executed evidence {evidence_type} "
+                    f"requires pass/fail/mixed result"
+                )
+        elif result not in {None, "not_tested"}:
+            raise ValueError(
+                f"{path}: {owner_id} documentary evidence {evidence_type} "
+                f"must use not_tested or omit result"
+            )
+
+
 def validate_references(data, path):
     capability_ids = {item["id"] for item in data["capabilities"]}
     system_ids = {item["id"] for item in data["systems"]}
@@ -31,6 +74,9 @@ def validate_references(data, path):
     unique_ids(data["systems"], "system", path)
     unique_ids(data["observations"], "observation", path)
     unique_ids(data["integrations"], "integration", path)
+
+    seen_cells = set()
+    scopes = defaultdict(set)
 
     for observation in data["observations"]:
         if observation["capability_id"] not in capability_ids:
@@ -44,6 +90,47 @@ def validate_references(data, path):
                 f"{observation['system_id']}"
             )
 
+        key = (*scope_key(observation), observation["capability_id"])
+        if key in seen_cells:
+            raise ValueError(
+                f"{path}: duplicate capability cell for "
+                f"{observation['system_id']} {observation['scope']} "
+                f"{observation['capability_id']}"
+            )
+        seen_cells.add(key)
+        scopes[scope_key(observation)].add(observation["capability_id"])
+
+        if observation["finding"] == "not_applicable":
+            if observation["mechanism"] != "not_applicable":
+                raise ValueError(
+                    f"{path}: {observation['id']} not_applicable finding requires "
+                    f"not_applicable mechanism"
+                )
+        elif observation["mechanism"] == "not_applicable":
+            raise ValueError(
+                f"{path}: {observation['id']} uses not_applicable mechanism "
+                f"for finding {observation['finding']}"
+            )
+
+        validate_evidence(observation["evidence"], observation["id"], path)
+
+    # Every published interface/version row is complete across the canonical
+    # capability set. Unknown and not_applicable are valid values; omission is not.
+    for key, observed_capabilities in scopes.items():
+        missing = sorted(capability_ids - observed_capabilities)
+        extra = sorted(observed_capabilities - capability_ids)
+        if missing or extra:
+            system_id, interface, version, deployment_mode = key
+            details = []
+            if missing:
+                details.append(f"missing capabilities: {', '.join(missing)}")
+            if extra:
+                details.append(f"unknown capabilities: {', '.join(extra)}")
+            raise ValueError(
+                f"{path}: incomplete comparison row for {system_id} / {interface} / "
+                f"{version} / {deployment_mode}: {'; '.join(details)}"
+            )
+
     for integration in data["integrations"]:
         for side in ("source", "target"):
             system_id = integration[side]["system_id"]
@@ -52,6 +139,7 @@ def validate_references(data, path):
                     f"{path}: integration {integration['id']} {side} references unknown system "
                     f"{system_id}"
                 )
+        validate_evidence(integration["evidence"], integration["id"], path)
 
 
 def main():
