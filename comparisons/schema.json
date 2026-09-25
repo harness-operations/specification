@@ -1,0 +1,352 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harness-operations.com/comparisons/schema.json",
+  "title": "Harness Operations landscape comparison dataset",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "reference_model",
+    "capabilities",
+    "systems",
+    "observations",
+    "integrations"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^0\\.[0-9]+$"
+    },
+    "reference_model": {
+      "type": "string",
+      "pattern": "^v[0-9]+\\.[0-9]+$"
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/capability"
+      }
+    },
+    "systems": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/system"
+      }
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/observation"
+      }
+    },
+    "integrations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/integration"
+      }
+    }
+  },
+  "$defs": {
+    "role": {
+      "enum": [
+        "harness",
+        "client",
+        "control_layer",
+        "execution_runtime",
+        "decision_service",
+        "other"
+      ]
+    },
+    "finding": {
+      "enum": [
+        "available",
+        "partial",
+        "unsupported",
+        "unknown",
+        "not_applicable"
+      ]
+    },
+    "mechanism": {
+      "enum": [
+        "native",
+        "configured_native",
+        "adapter",
+        "external_controller",
+        "model_mediated",
+        "not_applicable"
+      ]
+    },
+    "evidence_type": {
+      "enum": [
+        "primary_documentation",
+        "source_code",
+        "release_note",
+        "live_test",
+        "fixture_test",
+        "operator_report"
+      ]
+    },
+    "capability": {
+      "type": "object",
+      "required": [
+        "id",
+        "group",
+        "name",
+        "definition"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9_.-]+$"
+        },
+        "group": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "definition": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "system": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "roles",
+        "homepage"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9_.-]+$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "roles": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/role"
+          }
+        },
+        "homepage": {
+          "type": "string",
+          "format": "uri"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "scope": {
+      "type": "object",
+      "required": [
+        "interface",
+        "version",
+        "deployment_mode"
+      ],
+      "properties": {
+        "interface": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "deployment_mode": {
+          "type": "string"
+        },
+        "platform": {
+          "type": "string"
+        },
+        "plan": {
+          "type": "string"
+        },
+        "configuration": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "type",
+        "title"
+      ],
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/evidence_type"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "result": {
+          "enum": [
+            "pass",
+            "fail",
+            "mixed",
+            "not_tested"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "observation": {
+      "type": "object",
+      "required": [
+        "id",
+        "system_id",
+        "capability_id",
+        "scope",
+        "finding",
+        "mechanism",
+        "reviewed_at",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "system_id": {
+          "type": "string"
+        },
+        "capability_id": {
+          "type": "string"
+        },
+        "scope": {
+          "$ref": "#/$defs/scope"
+        },
+        "finding": {
+          "$ref": "#/$defs/finding"
+        },
+        "mechanism": {
+          "$ref": "#/$defs/mechanism"
+        },
+        "reviewed_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "prerequisites": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "endpoint": {
+      "type": "object",
+      "required": [
+        "system_id",
+        "interface",
+        "version"
+      ],
+      "properties": {
+        "system_id": {
+          "type": "string"
+        },
+        "interface": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "deployment_mode": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "integration": {
+      "type": "object",
+      "required": [
+        "id",
+        "source",
+        "target",
+        "operation",
+        "boundary",
+        "finding",
+        "reviewed_at",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/$defs/endpoint"
+        },
+        "target": {
+          "$ref": "#/$defs/endpoint"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "boundary": {
+          "type": "string"
+        },
+        "finding": {
+          "enum": [
+            "demonstrated",
+            "partial",
+            "failed",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "reviewed_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "prerequisites": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

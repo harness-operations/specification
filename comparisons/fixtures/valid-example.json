@@ -1,0 +1,96 @@
+{
+  "schema_version": "0.1",
+  "reference_model": "v0.2",
+  "capabilities": [
+    {
+      "id": "lifecycle.cancel",
+      "group": "Identity and lifecycle",
+      "name": "Cancellation or interruption",
+      "definition": "Provides a defined mechanism to request or cause interruption of in-progress agent execution, with observable semantics."
+    }
+  ],
+  "systems": [
+    {
+      "id": "example-harness",
+      "name": "Example Harness",
+      "roles": [
+        "harness"
+      ],
+      "homepage": "https://example.invalid/harness",
+      "notes": "Fictional schema-validation fixture. Never render as a landscape claim."
+    },
+    {
+      "id": "example-control",
+      "name": "Example Control Layer",
+      "roles": [
+        "control_layer"
+      ],
+      "homepage": "https://example.invalid/control",
+      "notes": "Fictional schema-validation fixture. Never render as a landscape claim."
+    }
+  ],
+  "observations": [
+    {
+      "id": "example-harness.cancel.v1",
+      "system_id": "example-harness",
+      "capability_id": "lifecycle.cancel",
+      "scope": {
+        "interface": "Example API",
+        "version": "1.0",
+        "deployment_mode": "local fixture"
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "prerequisites": [
+        "Fictional fixture only"
+      ],
+      "limitations": [
+        "Does not represent a real product or compatibility claim."
+      ],
+      "evidence": [
+        {
+          "type": "fixture_test",
+          "title": "Fictional cancellation fixture",
+          "result": "pass",
+          "notes": "Exercises the comparison data shape only."
+        }
+      ]
+    }
+  ],
+  "integrations": [
+    {
+      "id": "example-control-to-harness.cancel.v1",
+      "source": {
+        "system_id": "example-control",
+        "interface": "Example Controller API",
+        "version": "1.0",
+        "deployment_mode": "local fixture"
+      },
+      "target": {
+        "system_id": "example-harness",
+        "interface": "Example API",
+        "version": "1.0",
+        "deployment_mode": "local fixture"
+      },
+      "operation": "request cancellation",
+      "boundary": "fictional native API",
+      "finding": "demonstrated",
+      "reviewed_at": "2026-09-25",
+      "prerequisites": [
+        "Fictional fixture only"
+      ],
+      "limitations": [
+        "Demonstrates schema shape, not real interoperability."
+      ],
+      "evidence": [
+        {
+          "type": "fixture_test",
+          "title": "Fictional directed integration fixture",
+          "result": "pass",
+          "notes": "Never surface as live-test evidence."
+        }
+      ]
+    }
+  ]
+}
