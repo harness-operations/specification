@@ -383,7 +383,7 @@ The same reference concepts apply without requiring the architecture of example 
 
 ## What the model does not define
 
-Reference Model 0.1 does not define:
+The Harness Operations Reference Model does not define:
 
 - a wire protocol;
 - a JSON schema;
