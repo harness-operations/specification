@@ -42,11 +42,11 @@ Material use of AI assistance should be disclosed in the Pull Request descriptio
 
 The `proposals/` directory is reserved for changes that are too substantial to review effectively as an ordinary Issue and Pull Request.
 
-Reference Model 0.1 does not define a formal RFC process, voting system, working groups, or standards-body procedure. Those mechanisms should be introduced only if real contributor scale and decision pressure justify them.
+The Harness Operations Reference Model does not define a formal RFC process, voting system, working groups, or standards-body procedure. Those mechanisms should be introduced only if real contributor scale and decision pressure justify them.
 
 ## Normative language
 
-Reference Model 0.1 is descriptive. Do not use RFC 2119 or RFC 8174 `MUST`, `SHOULD`, or similar keywords as conformance requirements.
+The Harness Operations Reference Model is descriptive. Do not use RFC 2119 or RFC 8174 `MUST`, `SHOULD`, or similar keywords as conformance requirements.
 
 ## Licensing
 
