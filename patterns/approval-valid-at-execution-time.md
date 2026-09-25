@@ -1,6 +1,6 @@
 # Pattern: Approval valid at execution time
 
-**Status:** Draft for Applied Harness Operations v0.3
+**Status:** Applied Harness Operations v0.3
 
 ## Problem
 
