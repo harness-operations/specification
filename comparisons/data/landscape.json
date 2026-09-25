@@ -110,7 +110,7 @@
         "harness"
       ],
       "homepage": "https://github.com/anthropics/claude-code",
-      "notes": "Observations below are scoped to Claude Code CLI release 2.1.278, including native settings/hooks and the CLI --print automation surface. Claude Agent SDK, Desktop, hosted/cloud, and IDE-specific behavior are separate surfaces unless explicitly noted."
+      "notes": "Observations below are scoped to Claude Code CLI release 2.1.282, including native settings/hooks and the CLI --print automation surface. Claude Agent SDK, Desktop, hosted/cloud, and IDE-specific behavior are separate surfaces unless explicitly noted."
     },
     {
       "id": "cursor",
@@ -567,14 +567,14 @@
       ]
     },
     {
-      "id": "anthropic-claude-code.cli-2.1.278.access.interactive",
+      "id": "anthropic-claude-code.cli-2.1.282.access.interactive",
       "system_id": "anthropic-claude-code",
       "capability_id": "access.interactive",
       "scope": {
         "interface": "Claude Code CLI",
-        "version": "2.1.278",
+        "version": "2.1.282",
         "deployment_mode": "local CLI process",
-        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+        "configuration": "Documentation-backed review of Claude Code 2.1.282 and current first-party docs; live Harness Operations tests pending."
       },
       "finding": "available",
       "mechanism": "native",
@@ -593,14 +593,14 @@
       ]
     },
     {
-      "id": "anthropic-claude-code.cli-2.1.278.access.machine_control",
+      "id": "anthropic-claude-code.cli-2.1.282.access.machine_control",
       "system_id": "anthropic-claude-code",
       "capability_id": "access.machine_control",
       "scope": {
         "interface": "Claude Code CLI",
-        "version": "2.1.278",
+        "version": "2.1.282",
         "deployment_mode": "local CLI process",
-        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+        "configuration": "Documentation-backed review of Claude Code 2.1.282 and current first-party docs; live Harness Operations tests pending."
       },
       "finding": "available",
       "mechanism": "native",
@@ -629,14 +629,14 @@
       ]
     },
     {
-      "id": "anthropic-claude-code.cli-2.1.278.identity.stable_session",
+      "id": "anthropic-claude-code.cli-2.1.282.identity.stable_session",
       "system_id": "anthropic-claude-code",
       "capability_id": "identity.stable_session",
       "scope": {
         "interface": "Claude Code CLI",
-        "version": "2.1.278",
+        "version": "2.1.282",
         "deployment_mode": "local CLI process",
-        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+        "configuration": "Documentation-backed review of Claude Code 2.1.282 and current first-party docs; live Harness Operations tests pending."
       },
       "finding": "available",
       "mechanism": "native",
@@ -655,14 +655,14 @@
       ]
     },
     {
-      "id": "anthropic-claude-code.cli-2.1.278.lifecycle.resume",
+      "id": "anthropic-claude-code.cli-2.1.282.lifecycle.resume",
       "system_id": "anthropic-claude-code",
       "capability_id": "lifecycle.resume",
       "scope": {
         "interface": "Claude Code CLI",
-        "version": "2.1.278",
+        "version": "2.1.282",
         "deployment_mode": "local CLI process",
-        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+        "configuration": "Documentation-backed review of Claude Code 2.1.282 and current first-party docs; live Harness Operations tests pending."
       },
       "finding": "available",
       "mechanism": "native",
@@ -681,14 +681,14 @@
       ]
     },
     {
-      "id": "anthropic-claude-code.cli-2.1.278.lifecycle.cancel",
+      "id": "anthropic-claude-code.cli-2.1.282.lifecycle.cancel",
       "system_id": "anthropic-claude-code",
       "capability_id": "lifecycle.cancel",
       "scope": {
         "interface": "Claude Code CLI",
-        "version": "2.1.278",
+        "version": "2.1.282",
         "deployment_mode": "local CLI process",
-        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+        "configuration": "Documentation-backed review of Claude Code 2.1.282 and current first-party docs; live Harness Operations tests pending."
       },
       "finding": "available",
       "mechanism": "native",
@@ -707,14 +707,14 @@
       ]
     },
     {
-      "id": "anthropic-claude-code.cli-2.1.278.coordination.parallel",
+      "id": "anthropic-claude-code.cli-2.1.282.coordination.parallel",
       "system_id": "anthropic-claude-code",
       "capability_id": "coordination.parallel",
       "scope": {
         "interface": "Claude Code CLI",
-        "version": "2.1.278",
+        "version": "2.1.282",
         "deployment_mode": "local CLI process",
-        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+        "configuration": "Documentation-backed review of Claude Code 2.1.282 and current first-party docs; live Harness Operations tests pending."
       },
       "finding": "available",
       "mechanism": "native",
@@ -736,14 +736,14 @@
       ]
     },
     {
-      "id": "anthropic-claude-code.cli-2.1.278.coordination.delegation",
+      "id": "anthropic-claude-code.cli-2.1.282.coordination.delegation",
       "system_id": "anthropic-claude-code",
       "capability_id": "coordination.delegation",
       "scope": {
         "interface": "Claude Code CLI",
-        "version": "2.1.278",
+        "version": "2.1.282",
         "deployment_mode": "local CLI process",
-        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+        "configuration": "Documentation-backed review of Claude Code 2.1.282 and current first-party docs; live Harness Operations tests pending."
       },
       "finding": "available",
       "mechanism": "native",
@@ -762,14 +762,14 @@
       ]
     },
     {
-      "id": "anthropic-claude-code.cli-2.1.278.governance.pre_execution_gate",
+      "id": "anthropic-claude-code.cli-2.1.282.governance.pre_execution_gate",
       "system_id": "anthropic-claude-code",
       "capability_id": "governance.pre_execution_gate",
       "scope": {
         "interface": "Claude Code CLI",
-        "version": "2.1.278",
+        "version": "2.1.282",
         "deployment_mode": "local CLI process",
-        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+        "configuration": "Documentation-backed review of Claude Code 2.1.282 and current first-party docs; live Harness Operations tests pending."
       },
       "finding": "available",
       "mechanism": "configured_native",
@@ -791,14 +791,14 @@
       ]
     },
     {
-      "id": "anthropic-claude-code.cli-2.1.278.governance.attributed_decision",
+      "id": "anthropic-claude-code.cli-2.1.282.governance.attributed_decision",
       "system_id": "anthropic-claude-code",
       "capability_id": "governance.attributed_decision",
       "scope": {
         "interface": "Claude Code CLI",
-        "version": "2.1.278",
+        "version": "2.1.282",
         "deployment_mode": "local CLI process",
-        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+        "configuration": "Documentation-backed review of Claude Code 2.1.282 and current first-party docs; live Harness Operations tests pending."
       },
       "finding": "partial",
       "mechanism": "configured_native",
@@ -817,14 +817,14 @@
       ]
     },
     {
-      "id": "anthropic-claude-code.cli-2.1.278.isolation.execution_boundary",
+      "id": "anthropic-claude-code.cli-2.1.282.isolation.execution_boundary",
       "system_id": "anthropic-claude-code",
       "capability_id": "isolation.execution_boundary",
       "scope": {
         "interface": "Claude Code CLI",
-        "version": "2.1.278",
+        "version": "2.1.282",
         "deployment_mode": "local CLI process",
-        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+        "configuration": "Documentation-backed review of Claude Code 2.1.282 and current first-party docs; live Harness Operations tests pending."
       },
       "finding": "available",
       "mechanism": "configured_native",
@@ -846,14 +846,14 @@
       ]
     },
     {
-      "id": "anthropic-claude-code.cli-2.1.278.credentials.mediation",
+      "id": "anthropic-claude-code.cli-2.1.282.credentials.mediation",
       "system_id": "anthropic-claude-code",
       "capability_id": "credentials.mediation",
       "scope": {
         "interface": "Claude Code CLI",
-        "version": "2.1.278",
+        "version": "2.1.282",
         "deployment_mode": "local CLI process",
-        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+        "configuration": "Documentation-backed review of Claude Code 2.1.282 and current first-party docs; live Harness Operations tests pending."
       },
       "finding": "unknown",
       "mechanism": "native",
@@ -872,14 +872,14 @@
       ]
     },
     {
-      "id": "anthropic-claude-code.cli-2.1.278.resources.usage_reporting",
+      "id": "anthropic-claude-code.cli-2.1.282.resources.usage_reporting",
       "system_id": "anthropic-claude-code",
       "capability_id": "resources.usage_reporting",
       "scope": {
         "interface": "Claude Code CLI",
-        "version": "2.1.278",
+        "version": "2.1.282",
         "deployment_mode": "local CLI process",
-        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+        "configuration": "Documentation-backed review of Claude Code 2.1.282 and current first-party docs; live Harness Operations tests pending."
       },
       "finding": "available",
       "mechanism": "configured_native",
@@ -901,14 +901,14 @@
       ]
     },
     {
-      "id": "anthropic-claude-code.cli-2.1.278.resources.enforced_limits",
+      "id": "anthropic-claude-code.cli-2.1.282.resources.enforced_limits",
       "system_id": "anthropic-claude-code",
       "capability_id": "resources.enforced_limits",
       "scope": {
         "interface": "Claude Code CLI",
-        "version": "2.1.278",
+        "version": "2.1.282",
         "deployment_mode": "local CLI process",
-        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+        "configuration": "Documentation-backed review of Claude Code 2.1.282 and current first-party docs; live Harness Operations tests pending."
       },
       "finding": "available",
       "mechanism": "configured_native",
@@ -930,14 +930,14 @@
       ]
     },
     {
-      "id": "anthropic-claude-code.cli-2.1.278.evidence.event_export",
+      "id": "anthropic-claude-code.cli-2.1.282.evidence.event_export",
       "system_id": "anthropic-claude-code",
       "capability_id": "evidence.event_export",
       "scope": {
         "interface": "Claude Code CLI",
-        "version": "2.1.278",
+        "version": "2.1.282",
         "deployment_mode": "local CLI process",
-        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+        "configuration": "Documentation-backed review of Claude Code 2.1.282 and current first-party docs; live Harness Operations tests pending."
       },
       "finding": "available",
       "mechanism": "configured_native",
@@ -959,14 +959,14 @@
       ]
     },
     {
-      "id": "anthropic-claude-code.cli-2.1.278.evidence.resolved_facts",
+      "id": "anthropic-claude-code.cli-2.1.282.evidence.resolved_facts",
       "system_id": "anthropic-claude-code",
       "capability_id": "evidence.resolved_facts",
       "scope": {
         "interface": "Claude Code CLI",
-        "version": "2.1.278",
+        "version": "2.1.282",
         "deployment_mode": "local CLI process",
-        "configuration": "Documentation-backed review of Claude Code 2.1.278 and current first-party docs; live Harness Operations tests pending."
+        "configuration": "Documentation-backed review of Claude Code 2.1.282 and current first-party docs; live Harness Operations tests pending."
       },
       "finding": "partial",
       "mechanism": "configured_native",
@@ -2836,7 +2836,7 @@
       "target": {
         "system_id": "anthropic-claude-code",
         "interface": "Claude Code provider interface",
-        "version": "2.1.278 mapping scope",
+        "version": "2.1.282 mapping scope",
         "deployment_mode": "provider process/interface"
       },
       "operation": "create, resume, observe, and control provider sessions",
