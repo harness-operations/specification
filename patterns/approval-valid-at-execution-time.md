@@ -78,13 +78,13 @@ That can supply a pre-execution control point, but the broader application still
 
 See [Codex mapping](../mappings/codex-app-server-0.157.0.md).
 
-### Claude Code CLI 2.1.278
+### Claude Code CLI 2.1.282
 
 Claude Code permission rules and `PreToolUse` hooks can block matching tool execution before the side effect. This is a useful enforcement boundary for validating a proposal or approval token immediately before the protected tool call.
 
 A prompt instruction such as “only deploy approved code” is not equivalent to a blocking permission rule or hook.
 
-See [Claude Code mapping](../mappings/claude-code-cli-2.1.278.md).
+See [Claude Code mapping](../mappings/claude-code-cli-2.1.282.md).
 
 ## Failure behavior
 
