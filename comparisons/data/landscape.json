@@ -93,7 +93,417 @@
       "definition": "Can retain or reconstruct material resolved facts such as model, policy/configuration, environment, artifact, or authority decisions for later explanation."
     }
   ],
-  "systems": [],
-  "observations": [],
+  "systems": [
+    {
+      "id": "openai-codex",
+      "name": "OpenAI Codex",
+      "roles": [
+        "harness"
+      ],
+      "homepage": "https://github.com/openai/codex",
+      "notes": "Observations below are scoped to the App Server interface at Codex CLI release 0.157.0, not Codex Web, Agents API, IDE, or TUI behavior unless explicitly stated."
+    }
+  ],
+  "observations": [
+    {
+      "id": "openai-codex.app-server-0.157.0.access.interactive",
+      "system_id": "openai-codex",
+      "capability_id": "access.interactive",
+      "scope": {
+        "interface": "Codex App Server",
+        "version": "0.157.0",
+        "deployment_mode": "local App Server process",
+        "configuration": "Documentation-backed review of rust-v0.157.0; live Harness Operations tests pending."
+      },
+      "finding": "not_applicable",
+      "mechanism": "not_applicable",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "App Server is a machine-facing interface; interactive Codex UI surfaces are deliberately out of scope for this observation."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Unlocking the Codex harness",
+          "url": "https://openai.com/index/unlocking-the-codex-harness/",
+          "result": "not_tested",
+          "notes": "OpenAI describes App Server as the client-facing machine protocol beneath multiple Codex surfaces."
+        }
+      ]
+    },
+    {
+      "id": "openai-codex.app-server-0.157.0.access.machine_control",
+      "system_id": "openai-codex",
+      "capability_id": "access.machine_control",
+      "scope": {
+        "interface": "Codex App Server",
+        "version": "0.157.0",
+        "deployment_mode": "local App Server process",
+        "configuration": "Documentation-backed review of rust-v0.157.0; live Harness Operations tests pending."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "prerequisites": [
+        "Launch Codex App Server and speak its bidirectional JSON-RPC-lite protocol over the supported transport."
+      ],
+      "limitations": [
+        "This observation does not imply equivalence with Codex Web or Agents API."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Codex App Server architecture and protocol",
+          "url": "https://openai.com/index/unlocking-the-codex-harness/",
+          "result": "not_tested",
+          "notes": "OpenAI documents App Server as a bidirectional client-friendly JSON-RPC interface and first-class integration surface."
+        }
+      ]
+    },
+    {
+      "id": "openai-codex.app-server-0.157.0.identity.stable_session",
+      "system_id": "openai-codex",
+      "capability_id": "identity.stable_session",
+      "scope": {
+        "interface": "Codex App Server",
+        "version": "0.157.0",
+        "deployment_mode": "local App Server process",
+        "configuration": "Documentation-backed review of rust-v0.157.0; live Harness Operations tests pending."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "Codex calls the durable native identity a thread, not a Harness Operations Run."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Codex thread lifecycle and persistence",
+          "url": "https://openai.com/index/unlocking-the-codex-harness/",
+          "result": "not_tested",
+          "notes": "Threads are durable containers with persisted history and stable thread identities."
+        }
+      ]
+    },
+    {
+      "id": "openai-codex.app-server-0.157.0.lifecycle.resume",
+      "system_id": "openai-codex",
+      "capability_id": "lifecycle.resume",
+      "scope": {
+        "interface": "Codex App Server",
+        "version": "0.157.0",
+        "deployment_mode": "local App Server process",
+        "configuration": "Documentation-backed review of rust-v0.157.0; live Harness Operations tests pending."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "Resume semantics are thread-native and should not be generalized to every Codex surface."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Codex Python SDK thread_resume",
+          "url": "https://github.com/openai/codex/blob/rust-v0.157.0/sdk/python/docs/api-reference.md",
+          "result": "not_tested",
+          "notes": "The tagged SDK documents thread_resume and thread history retrieval; App Server documentation describes persisted reconnectable threads."
+        }
+      ]
+    },
+    {
+      "id": "openai-codex.app-server-0.157.0.lifecycle.cancel",
+      "system_id": "openai-codex",
+      "capability_id": "lifecycle.cancel",
+      "scope": {
+        "interface": "Codex App Server",
+        "version": "0.157.0",
+        "deployment_mode": "local App Server process",
+        "configuration": "Documentation-backed review of rust-v0.157.0; live Harness Operations tests pending."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "Interrupting an active turn is not proof that already completed side effects were rolled back."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Codex TurnHandle interrupt",
+          "url": "https://github.com/openai/codex/blob/rust-v0.157.0/sdk/python/docs/api-reference.md",
+          "result": "not_tested",
+          "notes": "The tagged SDK exposes TurnHandle.interrupt for active turns."
+        }
+      ]
+    },
+    {
+      "id": "openai-codex.app-server-0.157.0.coordination.parallel",
+      "system_id": "openai-codex",
+      "capability_id": "coordination.parallel",
+      "scope": {
+        "interface": "Codex App Server",
+        "version": "0.157.0",
+        "deployment_mode": "local App Server process",
+        "configuration": "Documentation-backed review of rust-v0.157.0; live Harness Operations tests pending."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "Concurrency limits and scheduling policy are not established by this documentation-backed observation."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Codex SDK concurrent active turns",
+          "url": "https://github.com/openai/codex/blob/rust-v0.157.0/sdk/python/docs/api-reference.md",
+          "result": "not_tested",
+          "notes": "The tagged SDK states that one Codex instance can stream multiple active turns concurrently."
+        }
+      ]
+    },
+    {
+      "id": "openai-codex.app-server-0.157.0.coordination.delegation",
+      "system_id": "openai-codex",
+      "capability_id": "coordination.delegation",
+      "scope": {
+        "interface": "Codex App Server",
+        "version": "0.157.0",
+        "deployment_mode": "local App Server process",
+        "configuration": "Documentation-backed review of rust-v0.157.0; live Harness Operations tests pending."
+      },
+      "finding": "unknown",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "Current Codex releases contain multi-agent functionality, but this review has not yet established a stable App Server delegation/handoff contract for this capability definition."
+      ],
+      "evidence": [
+        {
+          "type": "release_note",
+          "title": "Codex 0.157.0 release",
+          "url": "https://github.com/openai/codex/releases/tag/rust-v0.157.0",
+          "result": "not_tested",
+          "notes": "Release notes include multi-agent/AgentControl changes, but that is insufficient to classify the scoped App Server delegation capability without a stable interface review."
+        }
+      ]
+    },
+    {
+      "id": "openai-codex.app-server-0.157.0.governance.pre_execution_gate",
+      "system_id": "openai-codex",
+      "capability_id": "governance.pre_execution_gate",
+      "scope": {
+        "interface": "Codex App Server",
+        "version": "0.157.0",
+        "deployment_mode": "local App Server process",
+        "configuration": "Documentation-backed review of rust-v0.157.0; live Harness Operations tests pending."
+      },
+      "finding": "available",
+      "mechanism": "configured_native",
+      "reviewed_at": "2026-09-25",
+      "prerequisites": [
+        "Approval policy/configuration must require client review for the protected action."
+      ],
+      "limitations": [
+        "Approval requests cover specific Codex actions under configured policy; this is not a universal organizational approval system."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Codex App Server approval flow",
+          "url": "https://openai.com/index/unlocking-the-codex-harness/",
+          "result": "not_tested",
+          "notes": "OpenAI documents server-initiated approval requests that pause the turn until the client replies allow or deny."
+        }
+      ]
+    },
+    {
+      "id": "openai-codex.app-server-0.157.0.governance.attributed_decision",
+      "system_id": "openai-codex",
+      "capability_id": "governance.attributed_decision",
+      "scope": {
+        "interface": "Codex App Server",
+        "version": "0.157.0",
+        "deployment_mode": "local App Server process",
+        "configuration": "Documentation-backed review of rust-v0.157.0; live Harness Operations tests pending."
+      },
+      "finding": "partial",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "The reviewed App Server approval flow is scoped to thread/turn/client interaction, but the sources reviewed do not establish that every approval response carries a durable named human Principal identity suitable for Harness Operations accountability."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Codex App Server approval flow",
+          "url": "https://openai.com/index/unlocking-the-codex-harness/",
+          "result": "not_tested",
+          "notes": "Approval responses are explicit and scoped to active work, but human-principal attribution is not established by the reviewed public description."
+        }
+      ]
+    },
+    {
+      "id": "openai-codex.app-server-0.157.0.isolation.execution_boundary",
+      "system_id": "openai-codex",
+      "capability_id": "isolation.execution_boundary",
+      "scope": {
+        "interface": "Codex App Server",
+        "version": "0.157.0",
+        "deployment_mode": "local App Server process",
+        "configuration": "Documentation-backed review of rust-v0.157.0; live Harness Operations tests pending."
+      },
+      "finding": "available",
+      "mechanism": "configured_native",
+      "reviewed_at": "2026-09-25",
+      "prerequisites": [
+        "Use read_only or workspace_write sandbox rather than full_access when an isolation boundary is required."
+      ],
+      "limitations": [
+        "Specific enforcement details vary by sandbox mode/platform; full_access intentionally removes filesystem access restrictions."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Codex SDK sandbox modes",
+          "url": "https://github.com/openai/codex/blob/rust-v0.157.0/sdk/python/docs/api-reference.md",
+          "result": "not_tested",
+          "notes": "The tagged SDK documents read_only, workspace_write, and full_access sandbox modes."
+        }
+      ]
+    },
+    {
+      "id": "openai-codex.app-server-0.157.0.credentials.mediation",
+      "system_id": "openai-codex",
+      "capability_id": "credentials.mediation",
+      "scope": {
+        "interface": "Codex App Server",
+        "version": "0.157.0",
+        "deployment_mode": "local App Server process",
+        "configuration": "Documentation-backed review of rust-v0.157.0; live Harness Operations tests pending."
+      },
+      "finding": "unknown",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "Codex manages authentication and credential state, but this review has not yet established the stronger matrix definition that raw secrets can be brokered or withheld from model context across the scoped interface."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Codex harness config and auth",
+          "url": "https://openai.com/index/unlocking-the-codex-harness/",
+          "result": "not_tested",
+          "notes": "OpenAI documents authentication flows and credential state; that alone is insufficient for the credential-mediation capability definition."
+        }
+      ]
+    },
+    {
+      "id": "openai-codex.app-server-0.157.0.resources.usage_reporting",
+      "system_id": "openai-codex",
+      "capability_id": "resources.usage_reporting",
+      "scope": {
+        "interface": "Codex App Server",
+        "version": "0.157.0",
+        "deployment_mode": "local App Server process",
+        "configuration": "Documentation-backed review of rust-v0.157.0; live Harness Operations tests pending."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "The reviewed SDK exposes token usage; this observation does not claim cost/compute/storage reporting."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Codex TurnResult usage",
+          "url": "https://github.com/openai/codex/blob/rust-v0.157.0/sdk/python/docs/api-reference.md",
+          "result": "not_tested",
+          "notes": "The tagged SDK documents ThreadTokenUsage on completed turn results."
+        }
+      ]
+    },
+    {
+      "id": "openai-codex.app-server-0.157.0.resources.enforced_limits",
+      "system_id": "openai-codex",
+      "capability_id": "resources.enforced_limits",
+      "scope": {
+        "interface": "Codex App Server",
+        "version": "0.157.0",
+        "deployment_mode": "local App Server process",
+        "configuration": "Documentation-backed review of rust-v0.157.0; live Harness Operations tests pending."
+      },
+      "finding": "unknown",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "Sandbox and network policy are access controls, not evidence of generic token/cost/duration/compute/concurrency limits under this capability definition."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Codex 0.157.0 tagged App Server documentation",
+          "url": "https://github.com/openai/codex/blob/rust-v0.157.0/codex-rs/app-server/README.md",
+          "result": "not_tested",
+          "notes": "The reviewed documentation contains several policy controls but does not establish the general enforced-resource-limit capability defined by the matrix."
+        }
+      ]
+    },
+    {
+      "id": "openai-codex.app-server-0.157.0.evidence.event_export",
+      "system_id": "openai-codex",
+      "capability_id": "evidence.event_export",
+      "scope": {
+        "interface": "Codex App Server",
+        "version": "0.157.0",
+        "deployment_mode": "local App Server process",
+        "configuration": "Documentation-backed review of rust-v0.157.0; live Harness Operations tests pending."
+      },
+      "finding": "available",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "Retention and downstream audit guarantees remain the responsibility of the integrating client/operator."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Codex App Server event stream and persisted thread history",
+          "url": "https://openai.com/index/unlocking-the-codex-harness/",
+          "result": "not_tested",
+          "notes": "App Server emits stable JSON-RPC notifications and Codex persists thread history for reconnectable clients."
+        }
+      ]
+    },
+    {
+      "id": "openai-codex.app-server-0.157.0.evidence.resolved_facts",
+      "system_id": "openai-codex",
+      "capability_id": "evidence.resolved_facts",
+      "scope": {
+        "interface": "Codex App Server",
+        "version": "0.157.0",
+        "deployment_mode": "local App Server process",
+        "configuration": "Documentation-backed review of rust-v0.157.0; live Harness Operations tests pending."
+      },
+      "finding": "partial",
+      "mechanism": "native",
+      "reviewed_at": "2026-09-25",
+      "limitations": [
+        "Thread/turn metadata, usage, items, settings, and persisted history provide material evidence, but this review has not established preservation of every resolved policy, credential, environment, and authority fact needed for a complete Harness Operations Audit Record."
+      ],
+      "evidence": [
+        {
+          "type": "primary_documentation",
+          "title": "Codex App Server tagged documentation",
+          "url": "https://github.com/openai/codex/blob/rust-v0.157.0/codex-rs/app-server/README.md",
+          "result": "not_tested",
+          "notes": "The tagged protocol documentation exposes/persists substantial thread, turn, item, settings, attachment, and lifecycle metadata."
+        }
+      ]
+    }
+  ],
   "integrations": []
 }
